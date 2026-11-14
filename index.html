@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f1">
+  <script>
+    document.documentElement.classList.add('has-js', 'splash-loading');
+    window.sosoSplashStartedAt = performance.now();
+  </script>
+  <title>Chez Soso — Restaurant & bar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #171714;
+      --paper: #f7f6f1;
+      --white: #fff;
+      --sun: #f2c51c;
+      --muted: #77766f;
+      --line: #deddd5;
+      --card: #fff;
+      --card-border: #e8e7e0;
+      --ambience-bg: #ece9dd;
+      --ambience-text: #65645e;
+      --scroll-control-bg: #171714;
+      --scroll-control-text: #fff;
+      font-family: "DM Sans", sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #11110f;
+      --ink: #f4f1e7;
+      --muted: #b6b2a7;
+      --line: #39382f;
+      --card: #1d1d19;
+      --card-border: #37362d;
+      --ambience-bg: #202019;
+      --ambience-text: #c6c2b5;
+      --scroll-control-bg: #f4f1e7;
+      --scroll-control-text: #171714;
+    }
+    :root[data-theme="dark"] .bubble--dark {
+      color: #f4f1e7;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.62), rgba(255,255,255,.1) 50%, rgba(255,255,255,.02) 74%);
+      box-shadow: inset -4px -5px 12px rgba(255,255,255,.12), 0 0 16px rgba(255,255,255,.12);
+    }
+    :root[data-theme="dark"] .section-heading .eyebrow,
+    :root[data-theme="dark"] .highlight-card > span,
+    :root[data-theme="dark"] .ambience .eyebrow { color: #e8c43c; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html.splash-loading { overflow: hidden; }
+    body { margin: 0; background: var(--paper); color: var(--ink); transition: background-color .25s, color .25s; }
+    main { position: relative; z-index: 1; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .topbar { position: sticky; top: 0; z-index: 50; height: 78px; display: flex; align-items: center; justify-content: space-between; padding: 0 7.2%; background: #171714; color: var(--white); box-shadow: 0 5px 18px rgba(0,0,0,.18); }
+    .brand { display: flex; gap: 11px; align-items: center; font-weight: 700; font-size: 19px; letter-spacing: .2px; }
+    .brand-mark { width: 43px; height: 43px; flex: 0 0 auto; overflow: hidden; border-radius: 50%; background: var(--white); }
+    .brand-mark img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .topbar .brand-mark img { animation: logo-rotate 18s linear infinite; }
+    nav { position: relative; z-index: 51; display: flex; gap: 34px; align-items: center; font-size: 13px; }
+    nav a { color: #e6e5df; transition: color .2s; }
+    nav a:hover { color: var(--sun); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown summary { display: flex; align-items: center; gap: 8px; color: #e6e5df; cursor: pointer; list-style: none; }
+    .nav-dropdown summary::-webkit-details-marker { display: none; }
+    .nav-dropdown summary:hover, .nav-dropdown[open] summary { color: var(--sun); }
+    .dropdown-chevron { width: 14px; height: 14px; transition: transform .2s; }
+    .nav-dropdown[open] .dropdown-chevron { transform: rotate(180deg); }
+    .dropdown-panel { position: absolute; z-index: 60; top: calc(100% + 15px); left: -16px; width: 220px; padding: 7px; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; background: #252520; box-shadow: 0 16px 40px rgba(0,0,0,.35); animation: dropdown-in .16s ease-out both; }
+    .dropdown-panel a { display: block; padding: 11px 12px; border-radius: 5px; color: #e6e5df; }
+    .dropdown-panel a:hover, .dropdown-panel a:focus-visible { background: rgba(255,255,255,.1); color: var(--sun); }
+    .nav-contact { padding: 12px 17px; color: #171714; background: var(--sun); border-radius: 3px; font-weight: 700; }
+    .theme-toggle { display: inline-flex; align-items: center; gap: 8px; padding: 5px 0; border: 0; color: #e6e5df; background: transparent; font-size: 12px; cursor: pointer; }
+    .theme-switch { position: relative; width: 36px; height: 20px; flex: 0 0 auto; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; background: #4a4941; transition: background .2s, border-color .2s; }
+    .theme-switch::after { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; content: ""; transition: transform .2s; }
+    .theme-toggle[aria-pressed="true"] .theme-switch { border-color: var(--sun); background: #a17d00; }
+    .theme-toggle[aria-pressed="true"] .theme-switch::after { transform: translateX(16px); }
+    .theme-toggle:hover { color: var(--sun); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--sun); outline-offset: 4px; }
+    .hero { min-height: 590px; display: grid; grid-template-columns: 1fr 1fr; background: rgba(23, 23, 20, .96); color: var(--white); overflow: hidden; }
+    .hero-copy { align-self: center; padding: 64px 8vw 78px 14.4%; animation: rise .75s both; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: var(--sun); font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 500px; margin-bottom: 20px; font-family: "Playfair Display", serif; font-size: clamp(54px, 6vw, 82px); line-height: .99; letter-spacing: 0; }
+    h1 span { color: var(--sun); }
+    .hero-copy > p:not(.eyebrow) { max-width: 390px; margin-bottom: 31px; color: #c2c1ba; font-size: 15px; line-height: 1.8; }
+    .actions { display: flex; align-items: center; gap: 22px; }
+    .button { min-height: 49px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 20px; border: 0; border-radius: 3px; background: var(--sun); color: #171714; font-size: 13px; font-weight: 700; cursor: pointer; transition: transform .2s, background .2s; }
+    .button:hover { transform: translateY(-2px); background: #ffda3e; }
+    .text-link { color: #f3f2ed; font-size: 13px; font-weight: 600; }
+    .text-link span { padding-left: 5px; color: var(--sun); }
+    .hero-photo { min-height: 500px; display: grid; place-items: center; padding: 24px; background: #28271d; }
+    .hero-photo img { display: block; width: 100%; height: 540px; object-fit: contain; }
+    .strip { position: relative; z-index: 1; display: flex; justify-content: center; gap: clamp(25px, 7vw, 100px); padding: 18px 24px; background: rgba(242, 197, 28, .96); color: #171714; font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; }
+    .strip span::before { content: "✳"; padding-right: 10px; font-size: 13px; }
+    .menu-section { max-width: 1160px; margin: auto; padding: 93px 6% 100px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
+    .section-heading .eyebrow { margin-bottom: 11px; color: #a17d00; }
+    h2 { margin-bottom: 0; font-family: "Playfair Display", serif; font-size: clamp(34px, 4vw, 47px); line-height: 1.1; }
+    .section-heading > p { max-width: 300px; margin: 0 0 4px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 22px; }
+    .flyer-card { overflow: hidden; background: var(--card); border: 1px solid var(--card-border); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
+    .flyer-card img { display: block; width: 100%; height: auto; }
+    .flyer-caption { padding: 18px 20px; }
+    .flyer-caption h3 { margin: 0 0 5px; font-family: "Playfair Display", serif; font-size: 20px; }
+    .flyer-caption p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .menu-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+    .highlight-card { padding: 22px; border: 1px solid var(--line); background: var(--card); }
+    .highlight-card span { display: block; margin-bottom: 12px; color: #a17d00; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+    .highlight-card h3 { margin: 0 0 9px; font-family: "Playfair Display", serif; font-size: 20px; }
+    .highlight-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .buffet-offer { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 40px; padding: 34px clamp(22px, 5vw, 58px); overflow: hidden; border-radius: 8px; background: #171714; color: #fff; box-shadow: 0 16px 38px rgba(23,23,20,.17); }
+    .buffet-offer::after { position: absolute; top: -85px; right: 18%; width: 230px; height: 230px; border: 1px solid rgba(242,197,28,.25); border-radius: 50%; box-shadow: 0 0 0 22px rgba(242,197,28,.05), 0 0 0 48px rgba(242,197,28,.04); content: ""; pointer-events: none; }
+    .buffet-copy, .buffet-price { position: relative; z-index: 1; }
+    .buffet-copy { max-width: 620px; }
+    .buffet-copy .eyebrow { margin-bottom: 12px; }
+    .buffet-copy h3 { margin: 0 0 10px; color: #fff; font-family: "Playfair Display", serif; font-size: clamp(24px, 3vw, 34px); }
+    .buffet-copy p:not(.eyebrow) { margin: 0; color: #d3d2cb; font-size: 14px; line-height: 1.75; }
+    .buffet-price { flex: 0 0 auto; padding: 17px 20px; border: 1px solid rgba(242,197,28,.52); border-radius: 5px; background: rgba(242,197,28,.09); text-align: center; }
+    .buffet-price strong { display: block; color: var(--sun); font-family: "Playfair Display", serif; font-size: clamp(27px, 3vw, 36px); white-space: nowrap; }
+    .buffet-price span { display: block; margin-top: 3px; color: #e6e5df; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .ambience { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; padding: 76px 10%; background: var(--ambience-bg); }
+    .ambience .eyebrow { color: #a17d00; }
+    .ambience h2 { max-width: 430px; margin-bottom: 17px; }
+    .ambience-copy > p:not(.eyebrow) { max-width: 420px; margin: 0 0 13px; color: var(--ambience-text); font-size: 14px; line-height: 1.8; }
+    .ambience-copy > p:last-child { margin-bottom: 0; }
+    .ambience video { display: block; width: 100%; max-height: 440px; aspect-ratio: 16 / 10; background: var(--ink); object-fit: cover; box-shadow: 0 14px 36px rgba(23, 23, 20, .18); }
+    .contact { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 62px 10%; background: rgba(242, 197, 28, .95); color: #171714; }
+    .contact h2 { max-width: 520px; font-size: clamp(31px, 4vw, 45px); }
+    .contact p { margin: 10px 0 0; color: #4f4312; font-size: 13px; }
+    .contact .button { flex: 0 0 auto; background: #171714; color: var(--white); }
+    footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 7.2%; background: #171714; color: #d3d2cb; font-size: 11px; }
+    footer .brand { color: var(--white); font-size: 15px; }
+    footer .brand-mark { width: 35px; height: 35px; }
+    footer p { margin: 0; }
+    :focus-visible { outline: 3px solid #a17d00; outline-offset: 4px; }
+    .bubble-backdrop { position: fixed; z-index: 0; inset: 0; overflow: hidden; pointer-events: none; contain: strict; }
+    .bubble { --size: 48px; --drift: 35px; position: absolute; bottom: -100px; left: var(--left); width: var(--size); height: var(--size); border: 1px solid currentColor; border-radius: 50%; opacity: .48; animation: bubble-float var(--duration) linear var(--delay) infinite; will-change: transform; }
+    .bubble::after { position: absolute; top: 20%; left: 23%; width: 23%; height: 15%; border-radius: 50%; background: currentColor; content: ""; filter: blur(1px); opacity: .65; transform: rotate(-35deg); }
+    .bubble--gold { color: #e8b900; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.48), rgba(242,197,28,.12) 48%, rgba(242,197,28,.02) 72%); box-shadow: inset -4px -5px 12px rgba(173,130,0,.12), 0 0 14px rgba(242,197,28,.12); }
+    .bubble--dark { color: #171714; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.64), rgba(23,23,20,.08) 50%, rgba(23,23,20,.02) 74%); box-shadow: inset -4px -5px 12px rgba(23,23,20,.12), 0 0 12px rgba(23,23,20,.08); }
+    .bubble--light { color: #fff; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.58), rgba(255,255,255,.08) 50%, rgba(255,255,255,.02) 74%); box-shadow: inset -4px -5px 12px rgba(255,255,255,.12), 0 0 16px rgba(255,255,255,.14); }
+    .scroll-reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease var(--reveal-delay, 0ms), transform .65s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms); }
+    .scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+    html.auto-scrolling { scroll-behavior: auto !important; }
+    .auto-scroll-controls { position: fixed; z-index: 20; right: max(20px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); display: flex; align-items: center; gap: 6px; }
+    .auto-scroll-toggle { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; gap: 9px; padding: 0 16px; border: 1px solid rgba(242,197,28,.65); border-radius: 999px; background: var(--scroll-control-bg); color: var(--scroll-control-text); box-shadow: 0 8px 26px rgba(0,0,0,.2); font-size: 12px; font-weight: 700; cursor: pointer; transition: transform .2s, background-color .2s, color .2s, min-width .2s, padding .2s; }
+    .auto-scroll-toggle:hover:not(:disabled) { transform: translateY(-2px); }
+    .auto-scroll-toggle:focus-visible { outline: 3px solid #a17d00; outline-offset: 4px; }
+    .auto-scroll-toggle:disabled { cursor: not-allowed; opacity: .7; }
+    .auto-scroll-icon { width: 14px; height: 14px; flex: 0 0 auto; fill: currentColor; }
+    .auto-scroll-collapse { display: inline-grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(242,197,28,.45); border-radius: 50%; background: var(--scroll-control-bg); color: var(--scroll-control-text); box-shadow: 0 4px 14px rgba(0,0,0,.16); cursor: pointer; }
+    .auto-scroll-collapse svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .auto-scroll-collapse:hover { color: var(--sun); }
+    .auto-scroll-collapse:focus-visible { outline: 3px solid #a17d00; outline-offset: 3px; }
+    .auto-scroll-controls[data-compact="true"] { gap: 4px; }
+    .auto-scroll-controls[data-compact="true"] .auto-scroll-toggle { width: 40px; min-height: 40px; padding: 0; border-radius: 50%; }
+    .auto-scroll-controls[data-compact="true"] .auto-scroll-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+    .mascot { position: fixed; top: 0; left: 0; z-index: 30; display: flex; flex-direction: column; align-items: center; color: #171714; text-decoration: none; will-change: transform; -webkit-tap-highlight-color: transparent; }
+    .mascot:focus-visible { outline: 3px solid #a17d00; outline-offset: 5px; border-radius: 18px; }
+    .mascot svg { display: block; width: 92px; height: auto; overflow: visible; filter: drop-shadow(0 6px 10px rgba(0,0,0,.6)); animation: bob 2.4s ease-in-out infinite; transform-origin: 50% 100%; }
+    .mascot .bub { position: relative; margin-bottom: 8px; padding: 6px 12px; border-radius: 14px; background: #fff; color: #000; font-size: 14px; font-weight: 800; white-space: nowrap; }
+    .mascot .bub::after { position: absolute; bottom: -7px; left: 50%; margin-left: -7px; border: 7px solid transparent; border-bottom: 0; border-top-color: #fff; content: ""; }
+    .mascot:hover svg, .mascot:focus-visible svg { animation-duration: .8s; }
+    .mascot:hover .bub { background: var(--sun); }
+    @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+    #splash { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; overflow: hidden; background: #0b0b0b; color: #ffdd00; text-align: center; transition: opacity .6s ease, visibility .6s ease; }
+    .has-js #splash { display: grid; }
+    #splash.out { visibility: hidden; opacity: 0; pointer-events: none; }
+    #splash .splash-content { width: 100%; padding: 20px; }
+    #splash .splash-wordmark { position: relative; display: inline-block; font: 400 clamp(48px, 17vw, 150px)/1.1 Impact, "Arial Narrow Bold", system-ui, sans-serif; letter-spacing: 2px; white-space: nowrap; }
+    #splash .splash-outline { color: transparent; -webkit-text-stroke: 2px #444; }
+    #splash .splash-fill { position: absolute; top: 0; left: 0; color: #ffdd00; clip-path: inset(0 100% 0 0); animation: splash-sweep 1.1s ease-in-out infinite alternate; text-shadow: 0 0 28px rgba(255,221,0,.35); }
+    #splash .splash-subtitle { margin: 14px 0 0; color: #bdbdbd; font-size: clamp(11px, 3.5vw, 15px); letter-spacing: clamp(2px, 1vw, 4px); text-transform: uppercase; }
+    @keyframes splash-sweep { to { clip-path: inset(0 0 0 0); } }
+    @media (max-width: 380px) {
+      .mascot svg { width: 82px; }
+      .mascot .bub { padding: 5px 10px; font-size: 12px; }
+    }
+    @keyframes bubble-float {
+      0% { transform: translate3d(0, 0, 0) scale(.8); }
+      50% { transform: translate3d(var(--drift), -55vh, 0) scale(1); }
+      100% { transform: translate3d(calc(var(--drift) * -1), -115vh, 0) scale(.88); }
+    }
+    @keyframes logo-rotate { to { transform: rotate(360deg); } }
+    @keyframes dropdown-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 760px) {
+      .topbar { height: 64px; padding: 0 18px; }
+      .brand { gap: 8px; font-size: 17px; }
+      .brand-mark { width: 36px; height: 36px; }
+      nav { gap: 12px; font-size: 12px; }
+      .nav-dropdown { position: static; }
+      .dropdown-panel { top: calc(100% + 6px); right: 12px; left: auto; }
+      .nav-contact { padding: 10px 11px; font-size: 11px; white-space: nowrap; }
+      .theme-toggle { gap: 6px; font-size: 11px; }
+      .theme-switch { width: 34px; height: 19px; }
+      .theme-toggle[aria-pressed="true"] .theme-switch::after { transform: translateX(14px); }
+      .hero { grid-template-columns: 1fr; }
+      .hero-copy { padding: 54px 7% 42px; }
+      h1 { max-width: 520px; font-size: clamp(44px, 11vw, 68px); }
+      .hero-copy > p:not(.eyebrow) { font-size: 14px; line-height: 1.7; }
+      .actions { flex-wrap: wrap; gap: 16px; }
+      .hero-photo { min-height: clamp(250px, 76vw, 370px); padding: 8px 12px; }
+      .hero-photo img { height: clamp(250px, 76vw, 370px); }
+      .strip { justify-content: flex-start; gap: 22px; overflow-x: auto; padding: 16px 18px; white-space: nowrap; scrollbar-width: none; }
+      .strip::-webkit-scrollbar { display: none; }
+      .menu-section { padding: 60px 6% 68px; }
+      .section-heading { display: block; }
+      .section-heading > p { margin-top: 13px; }
+      .menu-grid { grid-template-columns: 1fr; gap: 18px; }
+      .menu-highlights { grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+      .highlight-card { padding: 19px; }
+      .buffet-offer { align-items: flex-start; flex-direction: column; gap: 20px; margin-top: 26px; padding: 26px 21px; }
+      .buffet-price { align-self: flex-start; min-width: 190px; }
+      .ambience { grid-template-columns: 1fr; gap: 24px; padding: 48px 7%; }
+      .ambience video { max-height: none; }
+      .contact { align-items: flex-start; flex-direction: column; gap: 20px; padding: 42px 7%; }
+      footer { align-items: flex-start; flex-direction: column; padding: 23px 7%; }
+    }
+    @media (max-width: 380px) {
+      .topbar { height: 60px; padding: 0 12px; }
+      .brand { gap: 0; }
+      .brand-mark { width: 34px; height: 34px; }
+      .brand > span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+      nav { gap: 9px; font-size: 11px; }
+      .nav-dropdown summary { gap: 3px; white-space: nowrap; }
+      .dropdown-chevron { width: 12px; height: 12px; }
+      .nav-contact { padding: 8px 9px; font-size: 10px; }
+      .theme-toggle-label { display: none; }
+      .theme-toggle { padding: 5px 2px; }
+      .theme-switch { width: 32px; height: 18px; }
+      .theme-switch::after { width: 12px; height: 12px; }
+      .theme-toggle[aria-pressed="true"] .theme-switch::after { transform: translateX(14px); }
+      .hero-copy { padding: 44px 20px 34px; }
+      h1 { font-size: clamp(42px, 13vw, 54px); }
+      .hero-photo, .hero-photo img { min-height: 230px; height: 72vw; max-height: 300px; }
+      .actions { align-items: flex-start; flex-direction: column; gap: 15px; }
+      .button { min-height: 46px; }
+      .menu-section { padding: 48px 18px 56px; }
+      .flyer-caption { padding: 16px; }
+      .ambience { padding: 42px 20px; }
+      .contact { padding: 38px 20px; }
+    }
+    @media (max-width: 380px) {
+      .auto-scroll-controls { right: 12px; bottom: 12px; }
+      .auto-scroll-toggle { min-height: 42px; padding: 0 13px; font-size: 11px; }
+      .auto-scroll-controls[data-compact="true"] .auto-scroll-toggle { width: 38px; min-height: 38px; }
+    }
+    @media (max-width: 600px) {
+      .bubble { opacity: .34; }
+      .bubble:nth-child(n+9) { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .topbar .brand-mark img { animation: none; }
+      #splash .splash-fill { animation: none; clip-path: inset(0 0 0 0); }
+      .bubble { top: var(--still-top); bottom: auto; animation: none; }
+      .scroll-reveal, .scroll-reveal.is-visible { opacity: 1; transform: none; transition: none; }
+      .mascot svg { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="splash" role="status" aria-live="polite" aria-label="Chargement de Chez Soso">
+    <div class="splash-content">
+      <div class="splash-wordmark">
+        <span class="splash-outline" aria-hidden="true">Chez SoSo</span>
+        <span class="splash-fill" aria-hidden="true">Chez SoSo</span>
+      </div>
+      <p class="splash-subtitle">Restaurant-Bar · Port-Gentil</p>
+    </div>
+  </div>
+  <a
+    class="mascot"
+    href="https://wa.me/24177233838?text=Bonjour%20Chez%20Soso%2C%20je%20souhaite%20commander"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Soso, la mascotte : commander sur WhatsApp"
+  >
+    <span class="bub">SO GOOD !!</span>
+    <svg viewBox="0 0 124 150" aria-hidden="true">
+      <line x1="102" y1="34" x2="102" y2="134" stroke="#8a5a2b" stroke-width="3" stroke-linecap="round"/>
+      <rect x="91" y="44" width="22" height="15" rx="6" fill="#b5651d" stroke="#111" stroke-width="2"/>
+      <rect x="91" y="61" width="22" height="15" rx="6" fill="#e0a030" stroke="#111" stroke-width="2"/>
+      <rect x="91" y="78" width="22" height="15" rx="6" fill="#c0392b" stroke="#111" stroke-width="2"/>
+      <ellipse cx="40" cy="139" rx="11" ry="6" fill="#111"/>
+      <ellipse cx="68" cy="139" rx="11" ry="6" fill="#111"/>
+      <path d="M20 100Q6 94 8 78" stroke="#111" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M88 104Q102 102 102 88" stroke="#111" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="54" cy="94" r="40" fill="#ffdd00" stroke="#111" stroke-width="3.5"/>
+      <circle cx="36" cy="40" r="13" fill="#fff" stroke="#111" stroke-width="3"/>
+      <circle cx="54" cy="32" r="15" fill="#fff" stroke="#111" stroke-width="3"/>
+      <circle cx="72" cy="40" r="13" fill="#fff" stroke="#111" stroke-width="3"/>
+      <rect x="34" y="44" width="40" height="17" rx="4" fill="#fff" stroke="#111" stroke-width="3"/>
+      <circle cx="41" cy="84" r="5" fill="#111"/>
+      <circle cx="67" cy="84" r="5" fill="#111"/>
+      <circle cx="43" cy="82" r="1.8" fill="#fff"/>
+      <circle cx="69" cy="82" r="1.8" fill="#fff"/>
+      <circle cx="32" cy="98" r="6" fill="#ff7a00" opacity=".6"/>
+      <circle cx="76" cy="98" r="6" fill="#ff7a00" opacity=".6"/>
+      <path d="M40 98Q54 118 68 98Z" fill="#c0392b" stroke="#111" stroke-width="3" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <div class="auto-scroll-controls" data-compact="true">
+    <button class="auto-scroll-toggle" type="button" aria-pressed="true" aria-label="Mettre en pause le défilement automatique" title="Mettre en pause le défilement automatique">
+      <svg class="auto-scroll-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M4 3h3v10H4zM9 3h3v10H9z"/>
+      </svg>
+      <span class="auto-scroll-label" aria-live="polite">Pause défilement</span>
+    </button>
+    <button class="auto-scroll-collapse" type="button" aria-expanded="false" aria-label="Déplier le bouton de défilement" title="Déplier le bouton de défilement">
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="m6 3 5 5-5 5"/>
+      </svg>
+    </button>
+  </div>
+  <div class="bubble-backdrop" aria-hidden="true">
+    <span class="bubble bubble--gold" style="--left: 7%; --still-top: 8%; --size: 54px; --duration: 24s; --delay: -13s; --drift: 42px"></span>
+    <span class="bubble bubble--dark" style="--left: 18%; --still-top: 20%; --size: 30px; --duration: 19s; --delay: -5s; --drift: -32px"></span>
+    <span class="bubble bubble--light" style="--left: 29%; --still-top: 33%; --size: 76px; --duration: 31s; --delay: -22s; --drift: 48px"></span>
+    <span class="bubble bubble--gold" style="--left: 40%; --still-top: 47%; --size: 38px; --duration: 22s; --delay: -8s; --drift: -45px"></span>
+    <span class="bubble bubble--dark" style="--left: 52%; --still-top: 61%; --size: 62px; --duration: 28s; --delay: -17s; --drift: 34px"></span>
+    <span class="bubble bubble--light" style="--left: 64%; --still-top: 74%; --size: 34px; --duration: 20s; --delay: -3s; --drift: -40px"></span>
+    <span class="bubble bubble--gold" style="--left: 75%; --still-top: 88%; --size: 88px; --duration: 34s; --delay: -26s; --drift: 30px"></span>
+    <span class="bubble bubble--dark" style="--left: 88%; --still-top: 14%; --size: 44px; --duration: 23s; --delay: -11s; --drift: -38px"></span>
+    <span class="bubble bubble--light" style="--left: 96%; --still-top: 28%; --size: 26px; --duration: 18s; --delay: -7s; --drift: 28px"></span>
+    <span class="bubble bubble--gold" style="--left: 2%; --still-top: 42%; --size: 36px; --duration: 21s; --delay: -16s; --drift: -26px"></span>
+    <span class="bubble bubble--dark" style="--left: 57%; --still-top: 56%; --size: 28px; --duration: 18s; --delay: -2s; --drift: 36px"></span>
+    <span class="bubble bubble--light" style="--left: 82%; --still-top: 70%; --size: 58px; --duration: 27s; --delay: -19s; --drift: -30px"></span>
+  </div>
+  <header class="topbar">
+    <a class="brand" href="#accueil" aria-label="Chez Soso, accueil">
+      <span class="brand-mark"><img src="Composants%20Images/Logo%20chez%20SOSO%20.png" alt=""></span>
+      <span>Chez Soso</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <details class="nav-dropdown">
+        <summary>
+          Explorer
+          <svg class="dropdown-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="m3.5 6 4.5 4 4.5-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <div class="dropdown-panel">
+          <a href="#carte">La carte</a>
+          <a href="#boissons">Boissons</a>
+          <a href="#ambiance">L'ambiance</a>
+        </div>
+      </details>
+      <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème sombre">
+        <span class="theme-switch" aria-hidden="true"></span>
+        <span class="theme-toggle-label">Clair</span>
+      </button>
+      <a class="nav-contact" href="#contact">Nous contacter</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-copy">
+        <p class="eyebrow">Restaurant & bar</p>
+        <h1>Le goût des bons <span>moments.</span></h1>
+        <p>Grillades, cuisine africaine et boissons à partager : ici, les envies se retrouvent autour d'une même table. Bienvenue chez Soso, votre restaurant-bar à Port-Gentil.</p>
+        <div class="actions">
+          <a class="button" href="#carte">Découvrir la carte <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#contact">Nous trouver <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="Composants%20Images/BROCHE.png" alt="Brochettes et spécialités de Chez Soso">
+      </div>
+    </section>
+    <div class="strip" aria-label="Spécialités">
+      <span>Grillades</span><span>Saveurs d'Afrique</span><span>Boissons</span>
+    </div>
+    <section class="menu-section" id="carte">
+      <div class="section-heading">
+        <div><p class="eyebrow">La carte</p><h2>À chacun son envie.</h2></div>
+        <p>Des brochettes aux recettes africaines, sans oublier les boissons : parcourez nos menus et composez votre prochain moment gourmand.</p>
+      </div>
+      <div class="menu-grid">
+        <figure class="flyer-card">
+          <img src="Composants%20Images/MENU%20GRILLADES%2CPLATS%20AFRICAINS%20ET%20ACCOMPAGNEMENTS.png" alt="Menu Chez Soso : entrées, grillades, plats africains et accompagnements" loading="lazy" decoding="async">
+          <figcaption class="flyer-caption">
+            <h3>Grillades & cuisine africaine</h3>
+            <p>Brochettes, grillades, plats africains et accompagnements : une carte généreuse pour varier les plaisirs et partager un repas selon vos envies.</p>
+          </figcaption>
+        </figure>
+        <figure class="flyer-card" id="boissons">
+          <img src="Composants%20Images/MENU%20BOISSON.png" alt="Menu des boissons de Chez Soso : sodas, bières, spiritueux et cocktails" loading="lazy" decoding="async">
+          <figcaption class="flyer-caption">
+            <h3>Les boissons</h3>
+            <p>Sodas, jus, bières, cocktails ou spiritueux : choisissez une boisson fraîche pour accompagner votre repas ou prolonger le moment au bar.</p>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="menu-highlights" aria-label="Les saveurs de la carte">
+        <article class="highlight-card">
+          <span>Au grill</span>
+          <h3>Des grillades à partager</h3>
+          <p>Brochettes de viande ou de poisson, poulet et autres spécialités grillées : retrouvez les incontournables de la maison sur notre menu.</p>
+        </article>
+        <article class="highlight-card">
+          <span>Saveurs d'Afrique</span>
+          <h3>Des plats de caractère</h3>
+          <p>Poisson, viande, yassa ou feuilles de manioc : laissez-vous tenter par les recettes et les saveurs africaines proposées à la carte.</p>
+        </article>
+        <article class="highlight-card">
+          <span>Pour accompagner</span>
+          <h3>Composez votre assiette</h3>
+          <p>Attiéké, fufu, riz, banane ou haricots verts : choisissez votre accompagnement et créez une assiette à votre goût.</p>
+        </article>
+      </div>
+      <aside class="buffet-offer" aria-label="Offre buffet Chez Soso">
+        <div class="buffet-copy">
+          <p class="eyebrow">Le buffet Chez Soso</p>
+          <h3>La qualité se savoure, le plaisir se partage.</h3>
+          <p>Un buffet de qualité, pensé pour savourer de bons plats dans une ambiance conviviale. Venez découvrir l’expérience buffet Chez Soso.</p>
+        </div>
+        <div class="buffet-price">
+          <strong>8 000 FCFA</strong>
+          <span>par personne</span>
+        </div>
+      </aside>
+    </section>
+    <section class="ambience" id="ambiance">
+      <div class="ambience-copy">
+        <p class="eyebrow">Chez Soso</p>
+        <h2>Un aperçu de l'ambiance.</h2>
+        <p>Installez-vous, prenez le temps de choisir vos plats et profitez d'un moment convivial autour de nos spécialités.</p>
+        <p>Que vous veniez pour un repas, un verre ou simplement pour découvrir l'adresse, Chez Soso vous accueille à Port-Gentil pour savourer l'instant.</p>
+      </div>
+      <video controls autoplay muted loop playsinline preload="metadata" poster="Composants%20Images/BROCHE.png" aria-label="Vidéo de la salle Chez Soso">
+        <source src="Composants%20Images/Sc%C3%A8ne%20arriere%20plan%20de%20la%20page%20en%20slow%20motion.mp4" type="video/mp4">
+        Votre navigateur ne prend pas en charge la lecture de cette vidéo.
+      </video>
+    </section>
+    <section class="contact" id="contact">
+      <div><h2>On se retrouve bientôt ?</h2><p>Une question sur la carte, les boissons ou votre prochaine visite ? Contactez Chez Soso pour échanger avec l'équipe et préparer votre venue.</p></div>
+      <a class="button" href="#contact" aria-label="Contacter Chez Soso sur WhatsApp">Contacter sur WhatsApp <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <footer>
+    <a class="brand" href="#accueil" aria-label="Chez Soso, accueil">
+      <span class="brand-mark"><img src="Composants%20Images/Logo%20chez%20SOSO%20.png" alt=""></span>
+      <span>Chez Soso</span>
+    </a>
+    <p>Restaurant & bar · Port-Gentil, Gabon</p>
+    <p>© Chez Soso</p>
+  </footer>
+  <script>
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navSummary = navDropdown.querySelector('summary');
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeLabel = themeToggle.querySelector('.theme-toggle-label');
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    const autoScrollControls = document.querySelector('.auto-scroll-controls');
+    const autoScrollToggle = document.querySelector('.auto-scroll-toggle');
+    const autoScrollLabel = autoScrollToggle.querySelector('.auto-scroll-label');
+    const autoScrollIcon = autoScrollToggle.querySelector('.auto-scroll-icon');
+    const autoScrollCollapse = document.querySelector('.auto-scroll-collapse');
+    const sosoMascot = document.querySelector('.mascot');
+
+    function setTheme(theme, save = false) {
+      const isDark = theme === 'dark';
+      document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', `Activer le thème ${isDark ? 'clair' : 'sombre'}`);
+      themeLabel.textContent = isDark ? 'Sombre' : 'Clair';
+      themeColor.content = isDark ? '#11110f' : '#f7f6f1';
+
+      if (save) {
+        try {
+          localStorage.setItem('chez-soso-theme', isDark ? 'dark' : 'light');
+        } catch (error) {
+          console.warn('Le choix du thème ne peut pas être mémorisé dans ce navigateur.', error);
+        }
+      }
+    }
+
+    let savedTheme = 'light';
+    try {
+      const storedTheme = localStorage.getItem('chez-soso-theme');
+      if (storedTheme === 'dark' || storedTheme === 'light') savedTheme = storedTheme;
+    } catch (error) {
+      console.warn('Le thème mémorisé ne peut pas être lu dans ce navigateur.', error);
+    }
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true);
+    });
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let autoScrollFrame = 0;
+    let lastFrameTime = 0;
+    let pauseAtEdgeUntil = 0;
+    let scrollDirection = 1;
+    let autoScrollRunning = false;
+    const autoScrollSpeed = 1.8;
+
+    function updateAutoScrollButton() {
+      const isRunning = autoScrollRunning;
+      autoScrollToggle.setAttribute('aria-pressed', String(isRunning));
+      autoScrollToggle.setAttribute('aria-label', isRunning ? 'Mettre en pause le défilement automatique' : 'Reprendre le défilement automatique');
+      autoScrollToggle.title = isRunning ? 'Mettre en pause le défilement automatique' : 'Reprendre le défilement automatique';
+      autoScrollLabel.textContent = isRunning ? 'Pause défilement' : 'Reprendre';
+      autoScrollIcon.innerHTML = isRunning
+        ? '<path d="M4 3h3v10H4zM9 3h3v10H9z"/>'
+        : '<path d="M5 3.5a.7.7 0 0 1 1.05-.61l6.3 3.7a.7.7 0 0 1 0 1.22l-6.3 3.7A.7.7 0 0 1 5 10.9z"/>';
+    }
+
+    function animateAutoScroll(time) {
+      if (!autoScrollRunning) return;
+      if (!lastFrameTime) lastFrameTime = time;
+      const elapsed = Math.min(time - lastFrameTime, 50);
+      lastFrameTime = time;
+
+      if (time >= pauseAtEdgeUntil) {
+        const root = document.documentElement;
+        const maxScroll = Math.max(0, root.scrollHeight - window.innerHeight);
+        const currentScroll = window.scrollY;
+
+        if (scrollDirection > 0 && currentScroll >= maxScroll - 1) {
+          scrollDirection = -1;
+          pauseAtEdgeUntil = time + 900;
+        } else if (scrollDirection < 0 && currentScroll <= 1) {
+          scrollDirection = 1;
+          pauseAtEdgeUntil = time + 900;
+        } else {
+          root.scrollTop += scrollDirection * elapsed * 28 * autoScrollSpeed / 1000;
+        }
+      }
+
+      autoScrollFrame = window.requestAnimationFrame(animateAutoScroll);
+    }
+
+    function stopAutoScroll() {
+      autoScrollRunning = false;
+      lastFrameTime = 0;
+      window.cancelAnimationFrame(autoScrollFrame);
+      document.documentElement.classList.remove('auto-scrolling');
+      updateAutoScrollButton();
+    }
+
+    function startAutoScroll() {
+      if (reducedMotion.matches || document.hidden || autoScrollRunning) return;
+      autoScrollRunning = true;
+      lastFrameTime = 0;
+      document.documentElement.classList.add('auto-scrolling');
+      updateAutoScrollButton();
+      autoScrollFrame = window.requestAnimationFrame(animateAutoScroll);
+    }
+
+    window.addEventListener('soso:splash-ended', () => {
+      if (!reducedMotion.matches) startAutoScroll();
+    }, { once: true });
+
+    if (reducedMotion.matches) {
+      autoScrollToggle.disabled = true;
+      autoScrollToggle.setAttribute('aria-pressed', 'false');
+      autoScrollToggle.setAttribute('aria-label', 'Défilement automatique désactivé car les animations réduites sont activées');
+      autoScrollLabel.textContent = 'Défilement désactivé';
+    }
+
+    autoScrollToggle.addEventListener('click', () => {
+      if (autoScrollRunning) stopAutoScroll();
+      else startAutoScroll();
+    });
+
+    autoScrollCollapse.addEventListener('click', () => {
+      const isExpanded = autoScrollControls.dataset.compact === 'false';
+      autoScrollControls.dataset.compact = String(isExpanded);
+      autoScrollCollapse.setAttribute('aria-expanded', String(!isExpanded));
+      autoScrollCollapse.setAttribute('aria-label', isExpanded ? 'Déplier le bouton de défilement' : 'Replier le bouton de défilement');
+      autoScrollCollapse.title = isExpanded ? 'Déplier le bouton de défilement' : 'Replier le bouton de défilement';
+    });
+
+    document.addEventListener('wheel', stopAutoScroll, { passive: true });
+    document.addEventListener('touchstart', stopAutoScroll, { passive: true });
+    document.addEventListener('keydown', (event) => {
+      if (autoScrollControls.contains(event.target)) return;
+      if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)) stopAutoScroll();
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (!autoScrollControls.contains(event.target)) stopAutoScroll();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopAutoScroll();
+    });
+    reducedMotion.addEventListener('change', (event) => {
+      if (event.matches) {
+        stopAutoScroll();
+        autoScrollToggle.disabled = true;
+        autoScrollToggle.setAttribute('aria-pressed', 'false');
+        autoScrollToggle.setAttribute('aria-label', 'Défilement automatique désactivé car les animations réduites sont activées');
+        autoScrollLabel.textContent = 'Défilement désactivé';
+      } else {
+        autoScrollToggle.disabled = false;
+        updateAutoScrollButton();
+      }
+    });
+
+    let mascotX;
+    let mascotY;
+    let mascotTargetX;
+    let mascotTargetY;
+    let mascotFrame = 0;
+    let mascotIdleTimer;
+    let mascotHover = false;
+    let mascotLastX;
+
+    function mascotHome() {
+      const viewport = document.documentElement;
+      mascotTargetX = Math.max(6, viewport.clientWidth - sosoMascot.offsetWidth - 12);
+      mascotTargetY = Math.max(60, viewport.clientHeight - sosoMascot.offsetHeight - 84);
+    }
+
+    function mascotOverlapsScrollControl(x, y) {
+      const mascotWidth = sosoMascot.offsetWidth;
+      const mascotHeight = sosoMascot.offsetHeight;
+      const control = autoScrollControls.getBoundingClientRect();
+      const gap = 12;
+
+      return x < control.right + gap
+        && x + mascotWidth > control.left - gap
+        && y < control.bottom + gap
+        && y + mascotHeight > control.top - gap;
+    }
+
+    function mascotAim(clientX, clientY) {
+      const width = sosoMascot.offsetWidth;
+      const height = sosoMascot.offsetHeight;
+      const viewport = document.documentElement;
+      const maxX = Math.max(6, viewport.clientWidth - width - 6);
+      const maxY = Math.max(60, viewport.clientHeight - height - 6);
+      const targetX = Math.min(maxX, Math.max(6, clientX + 30));
+      const targetY = Math.min(maxY, Math.max(60, clientY + 24));
+      const control = autoScrollControls.getBoundingClientRect();
+      const candidates = [
+        [control.left - width - 18, targetY],
+        [targetX, control.top - height - 18],
+        [control.left - width - 18, control.top - height - 18],
+        [control.right + 18, targetY]
+      ].map(([x, y]) => [
+        Math.min(maxX, Math.max(6, x)),
+        Math.min(maxY, Math.max(60, y))
+      ]).filter(([x, y]) => !mascotOverlapsScrollControl(x, y));
+      const nearest = candidates.sort((a, b) =>
+        Math.hypot(a[0] - targetX, a[1] - targetY) - Math.hypot(b[0] - targetX, b[1] - targetY)
+      )[0];
+
+      mascotTargetX = targetX;
+      mascotTargetY = targetY;
+      if (mascotOverlapsScrollControl(targetX, targetY)) {
+        [mascotTargetX, mascotTargetY] = nearest || [6, Math.max(60, targetY - height - 18)];
+      }
+    }
+
+    function mascotPlaceAtHome() {
+      mascotHome();
+      mascotX = mascotTargetX;
+      mascotY = mascotTargetY;
+      sosoMascot.style.transform = `translate3d(${mascotX}px,${mascotY}px,0)`;
+    }
+
+    function animateMascot() {
+      mascotX += (mascotTargetX - mascotX) * .12;
+      mascotY += (mascotTargetY - mascotY) * .12;
+      const rotation = Math.max(-14, Math.min(14, (mascotX - mascotLastX) * 1.2));
+      mascotLastX = mascotX;
+      sosoMascot.style.transform = `translate3d(${mascotX.toFixed(1)}px,${mascotY.toFixed(1)}px,0) rotate(${rotation.toFixed(1)}deg)`;
+      mascotFrame = window.requestAnimationFrame(animateMascot);
+    }
+
+    function startMascotMotion() {
+      mascotHome();
+      if (reducedMotion.matches) {
+        mascotPlaceAtHome();
+        return;
+      }
+      if (mascotFrame) return;
+      if (mascotX === undefined) {
+        mascotX = mascotTargetX;
+        mascotY = mascotTargetY;
+        mascotLastX = mascotX;
+      }
+      mascotFrame = window.requestAnimationFrame(animateMascot);
+    }
+
+    mascotHome();
+    mascotX = mascotTargetX;
+    mascotY = mascotTargetY;
+    mascotLastX = mascotX;
+    sosoMascot.style.transform = `translate3d(${mascotX}px,${mascotY}px,0)`;
+
+    sosoMascot.addEventListener('mouseenter', () => { mascotHover = true; });
+    sosoMascot.addEventListener('mouseleave', () => { mascotHover = false; });
+    window.addEventListener('mousemove', (event) => {
+      if (!mascotHover && !reducedMotion.matches) mascotAim(event.clientX, event.clientY);
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', mascotHome);
+
+    function followTouch(event) {
+      const touch = event.touches[0];
+      if (!touch || event.target.closest('.mascot') || reducedMotion.matches) return;
+      mascotAim(touch.clientX, touch.clientY);
+      window.clearTimeout(mascotIdleTimer);
+      mascotIdleTimer = window.setTimeout(mascotHome, 2500);
+    }
+
+    window.addEventListener('touchstart', followTouch, { passive: true });
+    window.addEventListener('touchmove', followTouch, { passive: true });
+    window.addEventListener('resize', () => {
+      mascotHome();
+      if (reducedMotion.matches) mascotPlaceAtHome();
+    });
+
+    if (reducedMotion.matches) mascotPlaceAtHome();
+    else startMascotMotion();
+
+    reducedMotion.addEventListener('change', (event) => {
+      if (event.matches) {
+        window.cancelAnimationFrame(mascotFrame);
+        mascotFrame = 0;
+        window.clearTimeout(mascotIdleTimer);
+        mascotPlaceAtHome();
+      } else {
+        startMascotMotion();
+      }
+    });
+
+    const revealTargets = document.querySelectorAll(
+      '.menu-section .section-heading, .flyer-card, .highlight-card, .buffet-offer, .ambience-copy, .ambience video, .contact > div, .contact > .button'
+    );
+
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+      revealTargets.forEach((element, index) => {
+        element.style.setProperty('--reveal-delay', `${(index % 3) * 90}ms`);
+        element.classList.add('scroll-reveal');
+        revealObserver.observe(element);
+      });
+    }
+
+    document.addEventListener('click', (event) => {
+      if (!navDropdown.contains(event.target)) navDropdown.open = false;
+    });
+
+    navDropdown.addEventListener('click', (event) => {
+      if (event.target.closest('.dropdown-panel a')) navDropdown.open = false;
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && navDropdown.open) {
+        navDropdown.open = false;
+        navSummary.focus();
+      }
+    });
+
+    const splash = document.getElementById('splash');
+    const splashStartedAt = window.sosoSplashStartedAt;
+    let splashEnded = false;
+
+    function endSplash() {
+      if (splashEnded) return;
+      splashEnded = true;
+      splash.classList.add('out');
+      document.documentElement.classList.remove('splash-loading');
+      window.setTimeout(() => {
+        splash.remove();
+        window.dispatchEvent(new Event('soso:splash-ended'));
+      }, 600);
+    }
+
+    function finishSplashAfterMinimum() {
+      const elapsed = performance.now() - splashStartedAt;
+      window.setTimeout(endSplash, Math.max(0, 3300 - elapsed));
+    }
+
+    if (document.readyState === 'complete') finishSplashAfterMinimum();
+    else window.addEventListener('load', finishSplashAfterMinimum, { once: true });
+    window.setTimeout(endSplash, Math.max(0, 6000 - (performance.now() - splashStartedAt)));
+  </script>
+</body>
+</html>
