@@ -1,16 +1,20 @@
 # Chez Soso — Restaurant & bar
 
 Site vitrine du restaurant-bar Chez Soso, situé à Port-Gentil, au Gabon.
-La page présente la carte, le buffet et l'ambiance du restaurant, et propose
-un lien direct vers WhatsApp pour passer commande.
+La page présente la carte en texte et en images, le buffet, les informations
+pratiques et l'ambiance du restaurant, avec des liens directs vers le téléphone
+et WhatsApp.
 
 ## Fonctionnalités
 
 - Écran de lancement animé « Chez SoSo ».
 - Présentation responsive des grillades, des plats africains, des accompagnements et des boissons.
-- Menus illustrés avec les images fournies dans le projet.
+- Carte des plats et des boissons en texte, avec les visuels originaux accessibles en complément.
+- Adresse à 25 Logement, horaires du lundi au samedi (12 h–21 h) et deux numéros cliquables.
+- Réservation de salle et organisation d'événements.
 - Mise en avant du buffet à **8 000 FCFA par personne**.
-- Vidéo d'ambiance en lecture automatique, sans son et en boucle.
+- Vidéo d'ambiance sans lecture automatique et chargée à la demande.
+- Métadonnées de partage et données structurées Schema.org `Restaurant`.
 - Choix entre thème clair et thème sombre, mémorisé dans le navigateur.
 - Bulles décoratives animées en arrière-plan.
 - Défilement automatique réversible, avec commande de pause/reprise et option compacte.
@@ -24,7 +28,7 @@ n'est nécessaire.
 
 ## Lancer le site
 
-Les fichiers médias doivent rester dans leur dossier `Composants Images`.
+Les fichiers médias doivent rester dans le dossier `assets`.
 
 Pour un aperçu local, ouvrez `index.html` dans un navigateur. Vous pouvez aussi
 lancer un serveur HTTP local depuis le dossier du projet :
@@ -41,19 +45,22 @@ Ouvrez ensuite <http://localhost:8000>.
 index.html
 README.md
 LICENSE
-.gitignore
-Composants Images/
-  BROCHE.png
-  Logo chez SOSO .png
-  MENU BOISSON.png
-  MENU GRILLADES,PLATS AFRICAINS ET ACCOMPAGNEMENTS.png
-  Scène arriere plan de la page en slow motion.mp4
+assets/
+  ambiance.mp4
+  brochettes.png
+  logo-chez-soso.png
+  mascotte.png
+  menu-boissons.png
+  menu-grillades-plats-africains.png
 ```
 
 ## Contact
 
-La mascotte et le bouton de contact ouvrent WhatsApp au **+241 77233838** avec
-un message de commande prérempli.
+La mascotte et le bouton de contact ouvrent WhatsApp au **+241 77 233 838** avec
+un message de commande prérempli. Le restaurant est à **25 Logement, Port-Gentil**,
+et les horaires communiqués sont **du lundi au samedi, 12 h–21 h**. La réservation
+de salle et l'organisation d'événements sont possibles. Téléphones : **+241 77 233 838**
+et **+241 65 353 512**.
 
 ## Licence
 

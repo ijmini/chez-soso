@@ -4,6 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f6f1">
+  <meta name="description" content="Découvrez la carte de Chez Soso à Port-Gentil : grillades, cuisine africaine, boissons et buffet. Ouvert du lundi au samedi, 12 h–21 h. Réservation de salle et événements.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_GA">
+  <meta property="og:site_name" content="Chez Soso">
+  <meta property="og:title" content="Chez Soso — Restaurant & bar à Port-Gentil">
+  <meta property="og:description" content="Grillades, cuisine africaine, boissons et buffet à Port-Gentil. Ouvert du lundi au samedi, 12 h–21 h. Réservez une salle ou organisez un événement.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/ijmini/chez-soso/main/assets/logo-chez-soso.png">
+  <meta property="og:image:alt" content="Logo Chez Soso, restaurant-bar à Port-Gentil">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Chez Soso",
+      "description": "Restaurant-bar proposant des grillades, des plats africains, des boissons, un buffet, la réservation de salle et l'organisation d'événements à Port-Gentil.",
+      "image": "https://raw.githubusercontent.com/ijmini/chez-soso/main/assets/logo-chez-soso.png",
+      "telephone": ["+24177233838", "+24165353512"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "25 Logement",
+        "addressLocality": "Port-Gentil",
+        "addressCountry": "GA"
+      },
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "https://schema.org/Monday",
+          "https://schema.org/Tuesday",
+          "https://schema.org/Wednesday",
+          "https://schema.org/Thursday",
+          "https://schema.org/Friday",
+          "https://schema.org/Saturday"
+        ],
+        "opens": "12:00",
+        "closes": "21:00"
+      }],
+      "servesCuisine": ["Cuisine africaine", "Grillades"]
+    }
+  </script>
   <script>
     document.documentElement.classList.add('has-js', 'splash-loading');
     window.sosoSplashStartedAt = performance.now();
@@ -107,11 +146,19 @@
     h2 { margin-bottom: 0; font-family: "Playfair Display", serif; font-size: clamp(34px, 4vw, 47px); line-height: 1.1; }
     .section-heading > p { max-width: 300px; margin: 0 0 4px; color: var(--muted); font-size: 13px; line-height: 1.7; }
     .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 22px; }
-    .flyer-card { overflow: hidden; background: var(--card); border: 1px solid var(--card-border); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
-    .flyer-card img { display: block; width: 100%; height: auto; }
-    .flyer-caption { padding: 18px 20px; }
-    .flyer-caption h3 { margin: 0 0 5px; font-family: "Playfair Display", serif; font-size: 20px; }
-    .flyer-caption p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .menu-card { padding: 24px; background: var(--card); border: 1px solid var(--card-border); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
+    .menu-card h3 { margin: 0 0 18px; font-family: "Playfair Display", serif; font-size: 24px; }
+    .menu-category + .menu-category { margin-top: 24px; }
+    .menu-category h4 { margin: 0 0 9px; color: #a17d00; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .price-list { margin: 0; padding: 0; list-style: none; }
+    .price-list li { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.5; }
+    .price-list li:last-child { border-bottom: 0; }
+    .price-list data { flex: 0 0 auto; font-weight: 700; text-align: right; white-space: nowrap; }
+    .menu-note { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .menu-image { margin-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .menu-image summary { padding-top: 12px; cursor: pointer; }
+    .menu-image img { display: block; width: 100%; height: auto; margin-top: 12px; }
+    .menu-image a { display: block; }
     .menu-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
     .highlight-card { padding: 22px; border: 1px solid var(--line); background: var(--card); }
     .highlight-card span { display: block; margin-bottom: 12px; color: #a17d00; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
@@ -133,9 +180,15 @@
     .ambience-copy > p:not(.eyebrow) { max-width: 420px; margin: 0 0 13px; color: var(--ambience-text); font-size: 14px; line-height: 1.8; }
     .ambience-copy > p:last-child { margin-bottom: 0; }
     .ambience video { display: block; width: 100%; max-height: 440px; aspect-ratio: 16 / 10; background: var(--ink); object-fit: cover; box-shadow: 0 14px 36px rgba(23, 23, 20, .18); }
-    .contact { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 62px 10%; background: rgba(242, 197, 28, .95); color: #171714; }
+    .contact { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, 1fr) auto; align-items: center; gap: 25px; padding: 62px 10%; background: rgba(242, 197, 28, .95); color: #171714; }
     .contact h2 { max-width: 520px; font-size: clamp(31px, 4vw, 45px); }
     .contact p { margin: 10px 0 0; color: #4f4312; font-size: 13px; }
+    .contact-details { font-size: 13px; line-height: 1.7; }
+    .contact-details h3 { margin: 0 0 8px; font-family: "Playfair Display", serif; font-size: 20px; }
+    .contact-details address { font-style: normal; }
+    .contact-details p { margin: 5px 0; }
+    .contact-details a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+    .contact-details .phone-list { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0 0; padding: 0; list-style: none; }
     .contact .button { flex: 0 0 auto; background: #171714; color: var(--white); }
     footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 7.2%; background: #171714; color: #d3d2cb; font-size: 11px; }
     footer .brand { color: var(--white); font-size: 15px; }
@@ -223,7 +276,7 @@
       .buffet-price { align-self: flex-start; min-width: 190px; }
       .ambience { grid-template-columns: 1fr; gap: 24px; padding: 48px 7%; }
       .ambience video { max-height: none; }
-      .contact { align-items: flex-start; flex-direction: column; gap: 20px; padding: 42px 7%; }
+      .contact { grid-template-columns: 1fr; align-items: start; gap: 20px; padding: 42px 7%; }
       footer { align-items: flex-start; flex-direction: column; padding: 23px 7%; }
     }
     @media (max-width: 380px) {
@@ -339,7 +392,7 @@
   </div>
   <header class="topbar">
     <a class="brand" href="#accueil" aria-label="Chez Soso, accueil">
-      <span class="brand-mark"><img src="Composants%20Images/Logo%20chez%20SOSO%20.png" alt=""></span>
+      <span class="brand-mark"><img src="assets/logo-chez-soso.png" alt="Logo Chez Soso"></span>
       <span>Chez Soso</span>
     </a>
     <nav aria-label="Navigation principale">
@@ -375,7 +428,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="Composants%20Images/BROCHE.png" alt="Brochettes et spécialités de Chez Soso">
+        <img src="assets/brochettes.png" alt="Brochettes et spécialités de Chez Soso">
       </div>
     </section>
     <div class="strip" aria-label="Spécialités">
@@ -384,23 +437,109 @@
     <section class="menu-section" id="carte">
       <div class="section-heading">
         <div><p class="eyebrow">La carte</p><h2>À chacun son envie.</h2></div>
-        <p>Des brochettes aux recettes africaines, sans oublier les boissons : parcourez nos menus et composez votre prochain moment gourmand.</p>
+        <p>Retrouvez les plats et les prix de nos grillades, recettes africaines et boissons. Les menus illustrés restent disponibles pour un aperçu visuel.</p>
       </div>
       <div class="menu-grid">
-        <figure class="flyer-card">
-          <img src="Composants%20Images/MENU%20GRILLADES%2CPLATS%20AFRICAINS%20ET%20ACCOMPAGNEMENTS.png" alt="Menu Chez Soso : entrées, grillades, plats africains et accompagnements" loading="lazy" decoding="async">
-          <figcaption class="flyer-caption">
-            <h3>Grillades & cuisine africaine</h3>
-            <p>Brochettes, grillades, plats africains et accompagnements : une carte généreuse pour varier les plaisirs et partager un repas selon vos envies.</p>
-          </figcaption>
-        </figure>
-        <figure class="flyer-card" id="boissons">
-          <img src="Composants%20Images/MENU%20BOISSON.png" alt="Menu des boissons de Chez Soso : sodas, bières, spiritueux et cocktails" loading="lazy" decoding="async">
-          <figcaption class="flyer-caption">
-            <h3>Les boissons</h3>
-            <p>Sodas, jus, bières, cocktails ou spiritueux : choisissez une boisson fraîche pour accompagner votre repas ou prolonger le moment au bar.</p>
-          </figcaption>
-        </figure>
+        <article class="menu-card">
+          <h3>Grillades & cuisine africaine</h3>
+          <section class="menu-category">
+            <h4>Entrées</h4>
+            <ul class="price-list">
+              <li><span>Salade museau</span><data value="4000">4 000 FCFA</data></li>
+              <li><span>Salade composée</span><data value="4000">4 000 FCFA</data></li>
+              <li><span>Salade macédoine</span><data value="4000">4 000 FCFA</data></li>
+            </ul>
+          </section>
+          <section class="menu-category">
+            <h4>Grillades</h4>
+            <ul class="price-list">
+              <li><span>Aile de poulet</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Poulet pané</span><data value="3000">3 000 FCFA</data></li>
+              <li><span>Cuisse de poulet</span><data value="1500">1 500 FCFA</data></li>
+              <li><span>Brochettes de poisson</span><data value="2000">2 000 FCFA</data></li>
+              <li><span>Brochettes de viande</span><data value="1500">1 500 FCFA</data></li>
+              <li><span>Brochettes de rognon</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Saucisse de Toulouse</span><data value="2500">2 500 FCFA</data></li>
+              <li><span>Wings</span><data value="3000">3 000 FCFA</data></li>
+              <li><span>Côtes de porc</span><data value="3000">3 000 FCFA</data></li>
+              <li><span>Brochettes de crevettes</span><data value="2500">2 500 FCFA</data></li>
+              <li><span>Poisson braisé</span><data value="3000">À partir de 3 000 FCFA</data></li>
+            </ul>
+            <p class="menu-note">Poisson braisé à la demande. Formule Grill : 10 000 FCFA (aile, rognon, cuisse, saucisse de Toulouse). Formule Grill + : 15 000 FCFA (côtes de porc, crevettes, poulet pané, brochettes de poisson).</p>
+          </section>
+          <section class="menu-category">
+            <h4>Plats africains</h4>
+            <ul class="price-list">
+              <li><span>Queue de bœuf</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Poisson salé</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Poisson frit à l’oseille</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Ragoût de viande au concombre</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Poisson frit aux légumes</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Bouillon de poisson</span><data value="5000">5 000 FCFA</data></li>
+              <li><span>Poulet yassa</span><data value="4500">4 500 FCFA</data></li>
+              <li><span>Gombo garni</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Poisson fumé au folon et carottes</span><data value="5000">5 000 FCFA</data></li>
+              <li><span>Feuilles de manioc (Mayara)</span><data value="5000">5 000 FCFA</data></li>
+              <li><span>Nyembwe</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Cotis</span><data value="5000">5 000 FCFA</data></li>
+              <li><span>Poisson frit à l’odika</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Poisson frit à la pâte d’arachide</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Poisson frit à la sauce tomate</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Viande de brousse</span><data value="5000">À partir de 5 000 FCFA</data></li>
+            </ul>
+          </section>
+          <section class="menu-category">
+            <h4>Accompagnements</h4>
+            <p class="menu-note">1 000 FCFA chacun : attiéké, fufu, gari, foutou, tubercule, riz, banane, frites, haricots verts et beignets.</p>
+          </section>
+          <details class="menu-image">
+            <summary>Voir le visuel original de la carte</summary>
+            <a href="assets/menu-grillades-plats-africains.png" target="_blank" rel="noopener noreferrer">
+              <img src="assets/menu-grillades-plats-africains.png" alt="Visuel original du menu grillades, plats africains et accompagnements" loading="lazy" decoding="async">
+            </a>
+          </details>
+        </article>
+        <article class="menu-card" id="boissons">
+          <h3>Boissons</h3>
+          <section class="menu-category">
+            <h4>Boissons fraîches</h4>
+            <ul class="price-list">
+              <li><span>Sodas</span><data value="1000">1 000–1 500 FCFA</data></li>
+              <li><span>Bouteille d’eau</span><data value="1000">1 000–1 500 FCFA</data></li>
+              <li><span>Jus de fruits nectar</span><data value="2000">2 000 FCFA</data></li>
+            </ul>
+          </section>
+          <section class="menu-category">
+            <h4>Bières</h4>
+            <ul class="price-list">
+              <li><span>Bières</span><data value="10000">10 000 FCFA</data></li>
+              <li><span>Régab, 33 Export, Beaufort, Castel, Vino Cola, Sombrero, Booster</span><data value="1500">1 500–2 500 FCFA</data></li>
+              <li><span>Guinness, Desperados, Royal, Heineken, 1664, Smirnoff</span><data value="1500">1 500–2 500 FCFA</data></li>
+            </ul>
+          </section>
+          <section class="menu-category">
+            <h4>Spiritueux & vin</h4>
+            <ul class="price-list">
+              <li><span>Whisky, vodka, gin, tequila, rhum, cognac, Martini, J&amp;B, Suze, Gordon’s, Campari</span><data value="3500">3 500–5 000 FCFA la dose</data></li>
+              <li><span>Bouteille de vin</span><data value="10000">10 000–12 000 FCFA</data></li>
+            </ul>
+          </section>
+          <section class="menu-category">
+            <h4>Cocktails</h4>
+            <ul class="price-list">
+              <li><span>Mojito</span><data value="5000">5 000 FCFA</data></li>
+              <li><span>Piña colada</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Sex on the beach</span><data value="6000">6 000 FCFA</data></li>
+              <li><span>Smoothie</span><data value="5000">5 000 FCFA</data></li>
+            </ul>
+          </section>
+          <details class="menu-image">
+            <summary>Voir le visuel original de la carte des boissons</summary>
+            <a href="assets/menu-boissons.png" target="_blank" rel="noopener noreferrer">
+              <img src="assets/menu-boissons.png" alt="Visuel original du menu des boissons" loading="lazy" decoding="async">
+            </a>
+          </details>
+        </article>
       </div>
       <div class="menu-highlights" aria-label="Les saveurs de la carte">
         <article class="highlight-card">
@@ -436,21 +575,32 @@
         <p class="eyebrow">Chez Soso</p>
         <h2>Un aperçu de l'ambiance.</h2>
         <p>Installez-vous, prenez le temps de choisir vos plats et profitez d'un moment convivial autour de nos spécialités.</p>
+        <p>Vous pouvez également réserver une salle et organiser vos événements chez Soso. Contactez-nous pour préparer votre projet.</p>
         <p>Que vous veniez pour un repas, un verre ou simplement pour découvrir l'adresse, Chez Soso vous accueille à Port-Gentil pour savourer l'instant.</p>
       </div>
-      <video controls autoplay muted loop playsinline preload="metadata" poster="Composants%20Images/BROCHE.png" aria-label="Vidéo de la salle Chez Soso">
-        <source src="Composants%20Images/Sc%C3%A8ne%20arriere%20plan%20de%20la%20page%20en%20slow%20motion.mp4" type="video/mp4">
+      <video controls muted loop playsinline preload="none" poster="assets/logo-chez-soso.png" aria-label="Vidéo de l'ambiance chez Soso">
+        <source src="assets/ambiance.mp4" type="video/mp4">
         Votre navigateur ne prend pas en charge la lecture de cette vidéo.
       </video>
     </section>
     <section class="contact" id="contact">
-      <div><h2>On se retrouve bientôt ?</h2><p>Une question sur la carte, les boissons ou votre prochaine visite ? Contactez Chez Soso pour échanger avec l'équipe et préparer votre venue.</p></div>
-      <a class="button" href="#contact" aria-label="Contacter Chez Soso sur WhatsApp">Contacter sur WhatsApp <span aria-hidden="true">↗</span></a>
+      <div><h2>On se retrouve bientôt ?</h2><p>Une question sur la carte, les boissons ou votre prochaine visite ? Contactez Chez Soso pour échanger avec l'équipe, réserver une salle ou organiser un événement.</p></div>
+      <div class="contact-details">
+        <h3>Infos pratiques</h3>
+        <address>25 Logement, Port-Gentil, Gabon</address>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=25%20Logement%2C%20Port-Gentil%2C%20Gabon" target="_blank" rel="noopener noreferrer">Voir sur Google Maps</a></p>
+        <p><strong>Horaires :</strong> lundi–samedi, 12 h–21 h</p>
+        <ul class="phone-list" aria-label="Téléphones Chez Soso">
+          <li><a href="tel:+24177233838">+241 77 233 838</a></li>
+          <li><a href="tel:+24165353512">+241 65 353 512</a></li>
+        </ul>
+      </div>
+      <a class="button" href="https://wa.me/24177233838?text=Bonjour%20Chez%20Soso%2C%20je%20souhaite%20r%C3%A9server%20une%20salle%20ou%20organiser%20un%20%C3%A9v%C3%A9nement" target="_blank" rel="noopener noreferrer" aria-label="Contacter Chez Soso sur WhatsApp pour réserver une salle ou organiser un événement">Contacter sur WhatsApp <span aria-hidden="true">↗</span></a>
     </section>
   </main>
   <footer>
     <a class="brand" href="#accueil" aria-label="Chez Soso, accueil">
-      <span class="brand-mark"><img src="Composants%20Images/Logo%20chez%20SOSO%20.png" alt=""></span>
+      <span class="brand-mark"><img src="assets/logo-chez-soso.png" alt="Logo Chez Soso"></span>
       <span>Chez Soso</span>
     </a>
     <p>Restaurant & bar · Port-Gentil, Gabon</p>
