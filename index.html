@@ -10,7 +10,7 @@
   <meta property="og:site_name" content="Chez Soso">
   <meta property="og:title" content="Chez Soso — Restaurant & bar à Port-Gentil">
   <meta property="og:description" content="Grillades, cuisine africaine, boissons et buffet à Port-Gentil. Ouvert du lundi au samedi, 12 h–21 h. Réservez une salle ou organisez un événement.">
-  <meta property="og:image" content="https://raw.githubusercontent.com/ijmini/chez-soso/main/assets/logo-chez-soso.png">
+  <meta property="og:image" content="https://chez-soso.vercel.app/assets/logo-chez-soso.png">
   <meta property="og:image:alt" content="Logo Chez Soso, restaurant-bar à Port-Gentil">
   <meta name="twitter:card" content="summary_large_image">
   <script type="application/ld+json">
@@ -19,7 +19,7 @@
       "@type": "Restaurant",
       "name": "Chez Soso",
       "description": "Restaurant-bar proposant des grillades, des plats africains, des boissons, un buffet, la réservation de salle et l'organisation d'événements à Port-Gentil.",
-      "image": "https://raw.githubusercontent.com/ijmini/chez-soso/main/assets/logo-chez-soso.png",
+      "image": "https://chez-soso.vercel.app/assets/logo-chez-soso.png",
       "telephone": ["+24177233838", "+24165353512"],
       "address": {
         "@type": "PostalAddress",
@@ -148,13 +148,25 @@
     .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 22px; }
     .menu-card { padding: 24px; background: var(--card); border: 1px solid var(--card-border); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
     .menu-card h3 { margin: 0 0 18px; font-family: "Playfair Display", serif; font-size: 24px; }
+    .menu-accordion > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none; }
+    .menu-accordion > summary::-webkit-details-marker { display: none; }
+    .menu-accordion > summary h3 { margin: 0; }
+    .menu-accordion > summary::after { display: grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); content: "+"; font-family: "DM Sans", sans-serif; font-size: 19px; font-weight: 400; }
+    .menu-accordion[open] > summary { margin-bottom: 18px; }
+    .menu-accordion[open] > summary::after { content: "−"; }
     .menu-category + .menu-category { margin-top: 24px; }
     .menu-category h4 { margin: 0 0 9px; color: #a17d00; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
     .price-list { margin: 0; padding: 0; list-style: none; }
-    .price-list li { display: flex; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.5; }
+    .price-list li { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.5; }
     .price-list li:last-child { border-bottom: 0; }
     .price-list data { flex: 0 0 auto; font-weight: 700; text-align: right; white-space: nowrap; }
+    .add-to-cart { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer; }
+    .add-to-cart:hover { border-color: #a17d00; background: var(--sun); color: #171714; }
+    .add-to-cart:focus-visible { outline: 3px solid #a17d00; outline-offset: 2px; }
     .menu-note { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .side-list { margin: 8px 0 0; padding: 0; list-style: none; }
+    .side-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .side-list li:last-child { border-bottom: 0; }
     .menu-image { margin-top: 12px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
     .menu-image summary { padding-top: 12px; cursor: pointer; }
     .menu-image img { display: block; width: 100%; height: auto; margin-top: 12px; }
@@ -190,6 +202,35 @@
     .contact-details a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
     .contact-details .phone-list { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 6px 0 0; padding: 0; list-style: none; }
     .contact .button { flex: 0 0 auto; background: #171714; color: var(--white); }
+    .opening-status { display: inline-flex; align-items: center; gap: 7px; margin-top: 5px !important; font-weight: 700; }
+    .opening-status::before { width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%; background: #a33b2d; content: ""; }
+    .opening-status[data-open="true"]::before { background: #247a43; }
+    .reservation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr); gap: 40px; padding: 64px 10%; background: var(--paper); }
+    .reservation-copy p:not(.eyebrow) { max-width: 430px; margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .reservation-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 24px; border: 1px solid var(--card-border); background: var(--card); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
+    .reservation-form label { display: grid; gap: 7px; font-size: 12px; font-weight: 700; }
+    .reservation-form input, .reservation-form select { width: 100%; min-height: 44px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); font: inherit; }
+    .reservation-form .form-event, .reservation-form button { grid-column: 1 / -1; }
+    .reservation-form button { justify-self: start; }
+    .turnstile-widget { min-height: 65px; max-width: 100%; }
+    .anti-spam-status { margin: 8px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .anti-spam-status[data-state="error"] { color: #a33b2d; }
+    .anti-spam-status[data-state="success"] { color: #247a43; }
+    .reservation-form button:disabled, .whatsapp-order:disabled { cursor: not-allowed; opacity: .6; }
+    .order-dock { position: fixed; z-index: 40; bottom: max(16px, env(safe-area-inset-bottom)); left: max(16px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 8px; }
+    .order-cart { position: relative; }
+    .order-cart > summary { display: flex; min-height: 48px; align-items: center; gap: 8px; padding: 0 15px; border: 1px solid rgba(242,197,28,.65); border-radius: 999px; background: var(--scroll-control-bg); color: var(--scroll-control-text); box-shadow: 0 8px 26px rgba(0,0,0,.2); font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; }
+    .order-cart > summary::-webkit-details-marker { display: none; }
+    .cart-count { display: inline-grid; min-width: 22px; height: 22px; place-items: center; border-radius: 50%; background: var(--sun); color: #171714; }
+    .cart-panel { position: absolute; bottom: calc(100% + 10px); left: 0; width: min(320px, calc(100vw - 32px)); max-height: min(55vh, 360px); padding: 16px; overflow: auto; border: 1px solid var(--card-border); border-radius: 8px; background: var(--card); color: var(--ink); box-shadow: 0 12px 35px rgba(0,0,0,.24); }
+    .cart-panel p { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
+    .cart-list { margin: 0; padding: 0; list-style: none; }
+    .cart-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+    .cart-quantity-controls { display: flex; align-items: center; gap: 7px; }
+    .cart-quantity-controls button, .clear-cart { min-width: 28px; min-height: 28px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--ink); cursor: pointer; }
+    .clear-cart { margin-top: 12px; padding: 4px 9px; font-size: 11px; }
+    .whatsapp-order { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 8px; padding: 0 17px; border: 0; border-radius: 999px; background: #167c43; color: #fff; box-shadow: 0 8px 26px rgba(0,0,0,.2); font-size: 12px; font-weight: 700; }
+    .whatsapp-order:hover { background: #116837; }
     footer { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 7.2%; background: #171714; color: #d3d2cb; font-size: 11px; }
     footer .brand { color: var(--white); font-size: 15px; }
     footer .brand-mark { width: 35px; height: 35px; }
@@ -277,6 +318,8 @@
       .ambience { grid-template-columns: 1fr; gap: 24px; padding: 48px 7%; }
       .ambience video { max-height: none; }
       .contact { grid-template-columns: 1fr; align-items: start; gap: 20px; padding: 42px 7%; }
+      .reservation { grid-template-columns: 1fr; gap: 22px; padding: 48px 7%; }
+      .auto-scroll-controls { bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); }
       footer { align-items: flex-start; flex-direction: column; padding: 23px 7%; }
     }
     @media (max-width: 380px) {
@@ -304,9 +347,13 @@
       .contact { padding: 38px 20px; }
     }
     @media (max-width: 380px) {
-      .auto-scroll-controls { right: 12px; bottom: 12px; }
+      .auto-scroll-controls { right: 12px; bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); }
       .auto-scroll-toggle { min-height: 42px; padding: 0 13px; font-size: 11px; }
       .auto-scroll-controls[data-compact="true"] .auto-scroll-toggle { width: 38px; min-height: 38px; }
+      .order-dock { left: 12px; gap: 5px; }
+      .order-cart > summary { padding: 0 11px; }
+      .whatsapp-order { width: 46px; min-height: 46px; padding: 0; font-size: 0; }
+      .whatsapp-order span { font-size: 20px; }
     }
     @media (max-width: 600px) {
       .bubble { opacity: .34; }
@@ -333,11 +380,9 @@
     </div>
   </div>
   <a
-    class="mascot"
-    href="https://wa.me/24177233838?text=Bonjour%20Chez%20Soso%2C%20je%20souhaite%20commander"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Soso, la mascotte : commander sur WhatsApp"
+  class="mascot"
+  href="#panier"
+  aria-label="Soso, la mascotte : ouvrir le panier et commander"
   >
     <span class="bub">SO GOOD !!</span>
     <svg viewBox="0 0 124 150" aria-hidden="true">
@@ -407,6 +452,7 @@
           <a href="#carte">La carte</a>
           <a href="#boissons">Boissons</a>
           <a href="#ambiance">L'ambiance</a>
+          <a href="#reservation">Réserver une salle</a>
         </div>
       </details>
       <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Activer le thème sombre">
@@ -437,11 +483,12 @@
     <section class="menu-section" id="carte">
       <div class="section-heading">
         <div><p class="eyebrow">La carte</p><h2>À chacun son envie.</h2></div>
-        <p>Retrouvez les plats et les prix de nos grillades, recettes africaines et boissons. Les menus illustrés restent disponibles pour un aperçu visuel.</p>
+        <p>Ouvrez une carte pour découvrir les plats et les ajouter au panier. Les menus illustrés restent disponibles pour un aperçu visuel.</p>
       </div>
       <div class="menu-grid">
         <article class="menu-card">
-          <h3>Grillades & cuisine africaine</h3>
+          <details class="menu-accordion">
+            <summary><h3>Grillades & cuisine africaine</h3></summary>
           <section class="menu-category">
             <h4>Entrées</h4>
             <ul class="price-list">
@@ -490,7 +537,19 @@
           </section>
           <section class="menu-category">
             <h4>Accompagnements</h4>
-            <p class="menu-note">1 000 FCFA chacun : attiéké, fufu, gari, foutou, tubercule, riz, banane, frites, haricots verts et beignets.</p>
+            <p class="menu-note">1 000 FCFA chacun :</p>
+            <ul class="side-list">
+              <li><span>Attiéké</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Fufu</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Gari</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Foutou</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Tubercule</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Riz</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Banane</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Frites</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Haricots verts</span><data value="1000">1 000 FCFA</data></li>
+              <li><span>Beignets</span><data value="1000">1 000 FCFA</data></li>
+            </ul>
           </section>
           <details class="menu-image">
             <summary>Voir le visuel original de la carte</summary>
@@ -498,9 +557,11 @@
               <img src="assets/menu-grillades-plats-africains.png" alt="Visuel original du menu grillades, plats africains et accompagnements" loading="lazy" decoding="async">
             </a>
           </details>
+          </details>
         </article>
         <article class="menu-card" id="boissons">
-          <h3>Boissons</h3>
+          <details class="menu-accordion">
+            <summary><h3>Boissons</h3></summary>
           <section class="menu-category">
             <h4>Boissons fraîches</h4>
             <ul class="price-list">
@@ -512,7 +573,7 @@
           <section class="menu-category">
             <h4>Bières</h4>
             <ul class="price-list">
-              <li><span>Bières</span><data value="10000">10 000 FCFA</data></li>
+              <li><span>Bières</span><data value="1000">1 000 FCFA</data></li>
               <li><span>Régab, 33 Export, Beaufort, Castel, Vino Cola, Sombrero, Booster</span><data value="1500">1 500–2 500 FCFA</data></li>
               <li><span>Guinness, Desperados, Royal, Heineken, 1664, Smirnoff</span><data value="1500">1 500–2 500 FCFA</data></li>
             </ul>
@@ -538,6 +599,7 @@
             <a href="assets/menu-boissons.png" target="_blank" rel="noopener noreferrer">
               <img src="assets/menu-boissons.png" alt="Visuel original du menu des boissons" loading="lazy" decoding="async">
             </a>
+          </details>
           </details>
         </article>
       </div>
@@ -578,7 +640,7 @@
         <p>Vous pouvez également réserver une salle et organiser vos événements chez Soso. Contactez-nous pour préparer votre projet.</p>
         <p>Que vous veniez pour un repas, un verre ou simplement pour découvrir l'adresse, Chez Soso vous accueille à Port-Gentil pour savourer l'instant.</p>
       </div>
-      <video controls muted loop playsinline preload="none" poster="assets/logo-chez-soso.png" aria-label="Vidéo de l'ambiance chez Soso">
+      <video controls muted loop playsinline preload="none" poster="assets/brochettes.png" aria-label="Vidéo de l'ambiance chez Soso">
         <source src="assets/ambiance.mp4" type="video/mp4">
         Votre navigateur ne prend pas en charge la lecture de cette vidéo.
       </video>
@@ -590,22 +652,68 @@
         <address>25 Logement, Port-Gentil, Gabon</address>
         <p><a href="https://www.google.com/maps/search/?api=1&amp;query=25%20Logement%2C%20Port-Gentil%2C%20Gabon" target="_blank" rel="noopener noreferrer">Voir sur Google Maps</a></p>
         <p><strong>Horaires :</strong> lundi–samedi, 12 h–21 h</p>
+        <p class="opening-status" data-open="false" aria-live="polite">Vérification des horaires…</p>
         <ul class="phone-list" aria-label="Téléphones Chez Soso">
           <li><a href="tel:+24177233838">+241 77 233 838</a></li>
           <li><a href="tel:+24165353512">+241 65 353 512</a></li>
         </ul>
       </div>
-      <a class="button" href="https://wa.me/24177233838?text=Bonjour%20Chez%20Soso%2C%20je%20souhaite%20r%C3%A9server%20une%20salle%20ou%20organiser%20un%20%C3%A9v%C3%A9nement" target="_blank" rel="noopener noreferrer" aria-label="Contacter Chez Soso sur WhatsApp pour réserver une salle ou organiser un événement">Contacter sur WhatsApp <span aria-hidden="true">↗</span></a>
+      <a class="button" href="#reservation" aria-label="Accéder au formulaire de réservation">Formulaire de réservation <span aria-hidden="true">↗</span></a>
+    </section>
+    <section class="reservation" id="reservation">
+      <div class="reservation-copy">
+        <p class="eyebrow">Salle & événements</p>
+        <h2>Préparons votre événement.</h2>
+        <p>Indiquez la date, le nombre de personnes et l'occasion. Votre demande sera préparée dans un message WhatsApp à envoyer à l'équipe.</p>
+      </div>
+      <form class="reservation-form">
+        <label for="reservation-date">Date souhaitée
+          <input id="reservation-date" name="date" type="date" required>
+        </label>
+        <label for="reservation-guests">Nombre de personnes
+          <input id="reservation-guests" name="guests" type="number" min="1" max="500" step="1" placeholder="Ex. 30" required>
+        </label>
+        <label class="form-event" for="reservation-event">Type d'événement
+          <select id="reservation-event" name="event" required>
+            <option value="" selected disabled>Choisissez une occasion</option>
+            <option>Anniversaire</option>
+            <option>Mariage</option>
+            <option>Réunion professionnelle</option>
+            <option>Repas de famille</option>
+            <option>Autre événement</option>
+          </select>
+        </label>
+        <div class="turnstile-widget" id="reservation-turnstile" aria-label="Vérification anti-robot pour la réservation"></div>
+        <p class="anti-spam-status" id="reservation-anti-spam-status" role="status" aria-live="polite">Chargement de la vérification anti-robot…</p>
+        <button class="button" type="submit" disabled>Envoyer la demande sur WhatsApp <span aria-hidden="true">↗</span></button>
+      </form>
     </section>
   </main>
   <footer>
     <a class="brand" href="#accueil" aria-label="Chez Soso, accueil">
-      <span class="brand-mark"><img src="assets/logo-chez-soso.png" alt="Logo Chez Soso"></span>
+      <span class="brand-mark"><img src="assets/logo-chez-soso.png" alt="Logo Chez Soso" loading="lazy" decoding="async"></span>
       <span>Chez Soso</span>
     </a>
     <p>Restaurant & bar · Port-Gentil, Gabon</p>
     <p>© Chez Soso</p>
   </footer>
+  <div class="order-dock" aria-label="Panier et commande WhatsApp">
+    <details class="order-cart" id="panier">
+      <summary aria-label="Ouvrir le panier, 0 article">
+        <span>Panier</span><span class="cart-count" aria-live="polite">0</span>
+      </summary>
+      <div class="cart-panel">
+        <p class="cart-empty">Votre panier est vide. Ajoutez vos plats avec le bouton +.</p>
+        <ul class="cart-list"></ul>
+        <button class="clear-cart" type="button" hidden>Vider le panier</button>
+        <div class="turnstile-widget" id="order-turnstile" aria-label="Vérification anti-robot pour la commande"></div>
+        <p class="anti-spam-status" id="order-anti-spam-status" role="status" aria-live="polite">Ouvrez le panier pour vérifier avant de commander.</p>
+      </div>
+    </details>
+    <button class="whatsapp-order" type="button" aria-label="Commander sur WhatsApp">
+      <span aria-hidden="true">↗</span> Commander
+    </button>
+  </div>
   <script>
     const navDropdown = document.querySelector('.nav-dropdown');
     const navSummary = navDropdown.querySelector('summary');
@@ -922,6 +1030,382 @@
         navSummary.focus();
       }
     });
+
+    const cart = new Map();
+    const cartCount = document.querySelector('.cart-count');
+    const cartSummary = document.querySelector('.order-cart > summary');
+    const cartList = document.querySelector('.cart-list');
+    const cartEmpty = document.querySelector('.cart-empty');
+    const clearCart = document.querySelector('.clear-cart');
+    const whatsappOrder = document.querySelector('.whatsapp-order');
+    const orderCart = document.querySelector('.order-cart');
+    const orderTurnstile = document.querySelector('#order-turnstile');
+    const orderAntiSpamStatus = document.querySelector('#order-anti-spam-status');
+    const reservationForm = document.querySelector('.reservation-form');
+    const reservationDate = document.querySelector('#reservation-date');
+    const reservationTurnstile = document.querySelector('#reservation-turnstile');
+    const reservationAntiSpamStatus = document.querySelector('#reservation-anti-spam-status');
+    const reservationSubmit = reservationForm.querySelector('button[type="submit"]');
+    let turnstileApi = null;
+    let turnstileSiteKey = '';
+    let antiSpamInitializationError = '';
+    let orderWidgetId = null;
+    let reservationWidgetId = null;
+    let orderToken = '';
+    let reservationToken = '';
+    let orderMessage = 'Bonjour Chez Soso, je souhaite commander';
+
+    function renderCart() {
+      const itemCount = Array.from(cart.values()).reduce((total, quantity) => total + quantity, 0);
+      cartCount.textContent = String(itemCount);
+      cartSummary.setAttribute('aria-label', `Ouvrir le panier, ${itemCount} article${itemCount === 1 ? '' : 's'}`);
+      cartEmpty.hidden = itemCount > 0;
+      clearCart.hidden = itemCount === 0;
+      cartList.replaceChildren();
+
+      cart.forEach((quantity, name) => {
+        const item = document.createElement('li');
+        const label = document.createElement('span');
+        const controls = document.createElement('span');
+        const decrease = document.createElement('button');
+        const increase = document.createElement('button');
+
+        label.textContent = `${quantity} × ${name}`;
+        controls.className = 'cart-quantity-controls';
+        decrease.type = 'button';
+        decrease.textContent = '−';
+        decrease.setAttribute('aria-label', `Retirer un ${name} du panier`);
+        decrease.dataset.cartAction = 'decrease';
+        decrease.dataset.itemName = name;
+        increase.type = 'button';
+        increase.textContent = '+';
+        increase.setAttribute('aria-label', `Ajouter un ${name} au panier`);
+        increase.dataset.cartAction = 'increase';
+        increase.dataset.itemName = name;
+        controls.append(decrease, increase);
+        item.append(label, controls);
+        cartList.append(item);
+      });
+
+      orderMessage = itemCount
+        ? `Bonjour, je voudrais ${Array.from(cart, ([name, quantity]) => `${quantity} x ${name}`).join(' et ')}.`
+        : 'Bonjour Chez Soso, je souhaite commander';
+    }
+
+    document.querySelectorAll('.menu-grid > article:first-child .price-list li, .menu-grid > article:first-child .side-list li')
+      .forEach((item) => {
+        const name = item.querySelector('span').textContent.trim();
+        const addButton = document.createElement('button');
+        addButton.className = 'add-to-cart';
+        addButton.type = 'button';
+        addButton.textContent = '+';
+        addButton.setAttribute('aria-label', `Ajouter ${name} au panier`);
+        addButton.addEventListener('click', () => {
+          cart.set(name, (cart.get(name) || 0) + 1);
+          renderCart();
+        });
+        item.append(addButton);
+      });
+
+    cartList.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-cart-action]');
+      if (!button) return;
+
+      const name = button.dataset.itemName;
+      const quantity = cart.get(name) || 0;
+      if (button.dataset.cartAction === 'increase') cart.set(name, quantity + 1);
+      else if (quantity <= 1) cart.delete(name);
+      else cart.set(name, quantity - 1);
+      renderCart();
+    });
+
+    clearCart.addEventListener('click', () => {
+      cart.clear();
+      renderCart();
+    });
+
+    function setAntiSpamStatus(element, message, state = 'info') {
+      element.textContent = message;
+      element.dataset.state = state;
+    }
+
+    function loadTurnstileApi() {
+      if (window.turnstile) return Promise.resolve(window.turnstile);
+
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.onload = () => {
+          if (window.turnstile) resolve(window.turnstile);
+          else reject(new Error('Le script de vérification ne s’est pas initialisé.'));
+        };
+        script.onerror = () => reject(new Error('Le script de vérification anti-robot est inaccessible.'));
+        document.head.append(script);
+      });
+    }
+
+    function renderOrderTurnstile() {
+      if (!turnstileApi || orderWidgetId !== null) return;
+
+      try {
+        orderWidgetId = turnstileApi.render(orderTurnstile, {
+          sitekey: turnstileSiteKey,
+          action: 'order',
+          callback(token) {
+            orderToken = token;
+            setAntiSpamStatus(orderAntiSpamStatus, 'Vérification terminée. Vous pouvez commander.', 'success');
+          },
+          'expired-callback'() {
+            orderToken = '';
+            setAntiSpamStatus(orderAntiSpamStatus, 'La vérification a expiré. Recommencez.');
+          },
+          'error-callback'() {
+            orderToken = '';
+            setAntiSpamStatus(orderAntiSpamStatus, 'La vérification a échoué. Réessayez.', 'error');
+          }
+        });
+      } catch (error) {
+        console.error('Le widget de commande Turnstile n’a pas pu être affiché.', error);
+        setAntiSpamStatus(orderAntiSpamStatus, 'Impossible d’afficher la vérification anti-robot.', 'error');
+      }
+    }
+
+    async function verifyTurnstileToken(action, token) {
+      let response;
+      try {
+        response = await fetch('/api/verify-turnstile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, token })
+        });
+      } catch (error) {
+        console.error('Impossible de joindre le service de vérification anti-robot.', error);
+        throw new Error('Le service de vérification est indisponible. Réessayez.');
+      }
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (error) {
+        console.error('Réponse JSON invalide du service de vérification anti-robot.', error);
+        throw new Error('Le service de vérification a renvoyé une réponse invalide.');
+      }
+
+      if (!result || typeof result !== 'object') {
+        throw new Error('Le service de vérification a renvoyé une réponse invalide.');
+      }
+      if (response.ok && result.success === true) return;
+
+      const messages = {
+        'turnstile-not-configured': 'La protection anti-robot n’est pas encore configurée.',
+        'verification-rejected': 'La vérification a échoué. Recommencez.',
+        'verification-unavailable': 'Le service de vérification est indisponible. Réessayez.'
+      };
+      throw new Error(messages[result.error] || 'La vérification anti-robot a échoué.');
+    }
+
+    function openWhatsAppWindow() {
+      const popup = window.open('about:blank', '_blank');
+      if (popup) popup.opener = null;
+      return popup;
+    }
+
+    function getWhatsAppUrl(message) {
+      return `https://wa.me/24177233838?text=${encodeURIComponent(message)}`;
+    }
+
+    orderCart.addEventListener('toggle', () => {
+      if (orderCart.open) renderOrderTurnstile();
+    });
+
+    sosoMascot.addEventListener('click', (event) => {
+      event.preventDefault();
+      orderCart.open = true;
+      orderCart.querySelector('summary').focus();
+      setAntiSpamStatus(
+        orderAntiSpamStatus,
+        antiSpamInitializationError || 'Validez la vérification anti-robot pour commander.',
+        antiSpamInitializationError ? 'error' : 'info'
+      );
+    });
+
+    whatsappOrder.addEventListener('click', async () => {
+      if (!turnstileApi) {
+        orderCart.open = true;
+        setAntiSpamStatus(orderAntiSpamStatus, antiSpamInitializationError || 'La vérification anti-robot se charge.', antiSpamInitializationError ? 'error' : 'info');
+        orderTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      orderCart.open = true;
+      renderOrderTurnstile();
+      if (orderWidgetId === null) return;
+      if (!orderToken) {
+        setAntiSpamStatus(orderAntiSpamStatus, 'Validez la vérification anti-robot pour commander.');
+        orderTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const popup = openWhatsAppWindow();
+      if (!popup) {
+        setAntiSpamStatus(orderAntiSpamStatus, 'Autorisez les fenêtres contextuelles pour ouvrir WhatsApp.', 'error');
+        return;
+      }
+
+      const token = orderToken;
+      whatsappOrder.disabled = true;
+      setAntiSpamStatus(orderAntiSpamStatus, 'Vérification en cours…');
+      try {
+        await verifyTurnstileToken('order', token);
+        popup.location.replace(getWhatsAppUrl(orderMessage));
+        setAntiSpamStatus(orderAntiSpamStatus, 'Vérification réussie. WhatsApp s’ouvre.', 'success');
+      } catch (error) {
+        popup.close();
+        setAntiSpamStatus(orderAntiSpamStatus, error.message, 'error');
+      } finally {
+        orderToken = '';
+        if (turnstileApi && orderWidgetId !== null) turnstileApi.reset(orderWidgetId);
+        whatsappOrder.disabled = false;
+      }
+    });
+
+    const gabonDateParts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Africa/Libreville',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+    const gabonDate = Object.fromEntries(gabonDateParts.map(({ type, value }) => [type, value]));
+    reservationDate.min = `${gabonDate.year}-${gabonDate.month}-${gabonDate.day}`;
+
+    reservationForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!reservationForm.reportValidity()) return;
+      if (!reservationToken) {
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Validez la vérification anti-robot avant d’envoyer la demande.', 'error');
+        reservationTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const popup = openWhatsAppWindow();
+      if (!popup) {
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Autorisez les fenêtres contextuelles pour ouvrir WhatsApp.', 'error');
+        return;
+      }
+
+      const formData = new FormData(reservationForm);
+      const [year, month, day] = formData.get('date').split('-').map(Number);
+      const dateLabel = new Intl.DateTimeFormat('fr-GA', {
+        timeZone: 'Africa/Libreville',
+        dateStyle: 'long'
+      }).format(new Date(Date.UTC(year, month - 1, day, 12)));
+      const message = [
+        'Bonjour Chez Soso, je souhaite réserver une salle.',
+        `Date souhaitée : ${dateLabel}`,
+        `Nombre de personnes : ${formData.get('guests')}`,
+        `Type d'événement : ${formData.get('event')}`
+      ].join('\n');
+      const token = reservationToken;
+      reservationSubmit.disabled = true;
+      setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification en cours…');
+      try {
+        await verifyTurnstileToken('reservation', token);
+        popup.location.replace(getWhatsAppUrl(message));
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification réussie. WhatsApp s’ouvre.', 'success');
+      } catch (error) {
+        popup.close();
+        setAntiSpamStatus(reservationAntiSpamStatus, error.message, 'error');
+      } finally {
+        reservationToken = '';
+        if (turnstileApi && reservationWidgetId !== null) turnstileApi.reset(reservationWidgetId);
+        reservationSubmit.disabled = true;
+      }
+    });
+
+    async function initializeAntiSpam() {
+      const isLocalDevelopment = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+        && window.location.protocol === 'http:';
+      if (window.location.protocol !== 'https:' && !isLocalDevelopment) {
+        throw new Error('La protection anti-robot nécessite un déploiement Vercel ou « vercel dev ».');
+      }
+
+      let response;
+      try {
+        response = await fetch('/api/turnstile-config', { cache: 'no-store' });
+      } catch (error) {
+        console.error('La configuration Turnstile est inaccessible.', error);
+        throw new Error('Impossible de joindre la configuration anti-robot.');
+      }
+
+      let config;
+      try {
+        config = await response.json();
+      } catch (error) {
+        console.error('La configuration Turnstile a renvoyé une réponse invalide.', error);
+        throw new Error('La configuration anti-robot a renvoyé une réponse invalide.');
+      }
+      if (!response.ok || typeof config.siteKey !== 'string' || !config.siteKey.trim()) {
+        throw new Error('La protection anti-robot n’est pas configurée.');
+      }
+
+      turnstileApi = await loadTurnstileApi();
+      turnstileSiteKey = config.siteKey;
+      antiSpamInitializationError = '';
+      reservationWidgetId = turnstileApi.render(reservationTurnstile, {
+        sitekey: turnstileSiteKey,
+        action: 'reservation',
+        callback(token) {
+          reservationToken = token;
+          reservationSubmit.disabled = false;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification terminée. Vous pouvez envoyer la demande.', 'success');
+        },
+        'expired-callback'() {
+          reservationToken = '';
+          reservationSubmit.disabled = true;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'La vérification a expiré. Recommencez.');
+        },
+        'error-callback'() {
+          reservationToken = '';
+          reservationSubmit.disabled = true;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'La vérification a échoué. Réessayez.', 'error');
+        }
+      });
+      if (orderCart.open) renderOrderTurnstile();
+      setAntiSpamStatus(orderAntiSpamStatus, 'Validez la vérification anti-robot pour commander.');
+      setAntiSpamStatus(reservationAntiSpamStatus, 'Validez la vérification anti-robot avant d’envoyer la demande.');
+    }
+
+    initializeAntiSpam().catch((error) => {
+      console.error('La protection anti-robot n’a pas pu être initialisée.', error);
+      antiSpamInitializationError = error.message;
+      setAntiSpamStatus(orderAntiSpamStatus, error.message, 'error');
+      setAntiSpamStatus(reservationAntiSpamStatus, error.message, 'error');
+    });
+
+    const openingStatus = document.querySelector('.opening-status');
+    const gabonClock = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Africa/Libreville',
+      weekday: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23'
+    });
+
+    function updateOpeningStatus() {
+      const parts = Object.fromEntries(gabonClock.formatToParts(new Date()).map(({ type, value }) => [type, value]));
+      const minuteOfDay = Number(parts.hour) * 60 + Number(parts.minute);
+      const isOpen = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].includes(parts.weekday)
+        && minuteOfDay >= 12 * 60
+        && minuteOfDay < 21 * 60;
+      openingStatus.dataset.open = String(isOpen);
+      openingStatus.textContent = isOpen
+        ? 'Ouvert maintenant · ferme à 21 h'
+        : 'Fermé actuellement · ouvert lundi–samedi, 12 h–21 h';
+    }
+
+    updateOpeningStatus();
+    window.setInterval(updateOpeningStatus, 60_000);
 
     const splash = document.getElementById('splash');
     const splashStartedAt = window.sosoSplashStartedAt;
