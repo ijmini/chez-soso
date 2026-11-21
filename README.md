@@ -9,7 +9,9 @@ et WhatsApp.
 
 - Écran de lancement animé « Chez SoSo ».
 - Présentation responsive des grillades, des plats africains, des accompagnements et des boissons.
-- Carte des plats et des boissons en texte, avec les visuels originaux accessibles en complément.
+- Menus textuels repliables pour garder l'aperçu compact, avec les visuels originaux accessibles en complément.
+- Panier de plats avec commande WhatsApp préremplie, horaires en temps réel et formulaire de réservation de salle.
+- Protection anti-robot Cloudflare Turnstile, vérifiée côté serveur pour les commandes et les réservations.
 - Adresse à 25 Logement, horaires du lundi au samedi (12 h–21 h) et deux numéros cliquables.
 - Réservation de salle et organisation d'événements.
 - Mise en avant du buffet à **8 000 FCFA par personne**.
@@ -23,8 +25,14 @@ et WhatsApp.
 
 ## Technologies
 
-HTML5, CSS3 et JavaScript natifs. Aucune dépendance ou étape de compilation
-n'est nécessaire.
+HTML5, CSS3 et JavaScript natifs, avec deux fonctions serverless Node.js pour la
+configuration et la validation Turnstile. Aucun package npm n'est requis.
+
+## Tests
+
+```powershell
+node --test .\tests\*.test.js
+```
 
 ## Lancer le site
 
@@ -39,12 +47,34 @@ py -m http.server 8000
 
 Ouvrez ensuite <http://localhost:8000>.
 
+La vérification anti-robot requiert les fonctions Vercel ; le serveur statique
+`py -m http.server` ne les exécute pas. Pour tester en local, utilisez `vercel dev`
+avec les clés de test Turnstile et `TURNSTILE_HOSTNAME=localhost`.
+
+## Configuration anti-robot sur Vercel
+
+Créez un widget Cloudflare Turnstile autorisé pour `chez-soso.vercel.app`, puis
+ajoutez ces variables dans **Project Settings → Environment Variables** :
+
+- `TURNSTILE_SITE_KEY` : clé publique du widget.
+- `TURNSTILE_SECRET_KEY` : clé secrète, conservée uniquement côté serveur.
+- `TURNSTILE_HOSTNAME` : `chez-soso.vercel.app`, sans protocole ni chemin.
+
+Redéployez après avoir enregistré les variables. Les demandes sont refusées si
+la configuration ou la vérification Turnstile est indisponible.
+
 ## Contenu du projet
 
 ```text
 index.html
 README.md
 LICENSE
+api/
+  turnstile-config.js
+  verify-turnstile.js
+tests/
+  inline-script.test.js
+  verify-turnstile.test.js
 assets/
   ambiance.mp4
   brochettes.png
@@ -56,8 +86,8 @@ assets/
 
 ## Contact
 
-La mascotte et le bouton de contact ouvrent WhatsApp au **+241 77 233 838** avec
-un message de commande prérempli. Le restaurant est à **25 Logement, Port-Gentil**,
+La mascotte ouvre le panier ; les commandes vérifiées et réservations ouvrent
+WhatsApp au **+241 77 233 838** avec un message prérempli. Le restaurant est à **25 Logement, Port-Gentil**,
 et les horaires communiqués sont **du lundi au samedi, 12 h–21 h**. La réservation
 de salle et l'organisation d'événements sont possibles. Téléphones : **+241 77 233 838**
 et **+241 65 353 512**.
