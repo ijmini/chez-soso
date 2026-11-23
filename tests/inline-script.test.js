@@ -13,3 +13,11 @@ test('inline page scripts are valid JavaScript', () => {
   assert.ok(scripts.length > 0);
   scripts.forEach((script) => new vm.Script(script));
 });
+
+test('ambience section contains a single video element', () => {
+  const html = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const ambience = html.match(/<section class="ambience"[\s\S]*?<\/section>/i)?.[0];
+
+  assert.ok(ambience);
+  assert.equal((ambience.match(/<video\b/gi) || []).length, 1);
+});
