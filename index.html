@@ -106,6 +106,21 @@
     nav { position: relative; z-index: 51; display: flex; gap: 34px; align-items: center; font-size: 13px; }
     nav a { color: #e6e5df; transition: color .2s; }
     nav a:hover { color: var(--sun); }
+    .header-actions { position: relative; z-index: 52; display: flex; align-items: center; gap: 10px; }
+    .menu-toggle { position: relative; z-index: 52; display: grid; width: 46px; height: 46px; flex: 0 0 auto; place-content: center; gap: 5px; border: 1px solid rgba(242,197,28,.55); border-radius: 50%; background: #22221d; color: var(--sun); cursor: pointer; transition: background-color .2s, border-color .2s, transform .2s; }
+    .menu-toggle:hover { transform: translateY(-1px); border-color: var(--sun); background: #303027; }
+    .menu-toggle span { display: block; width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .2s, opacity .2s; }
+    .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
+    nav.header-menu { position: absolute; z-index: 51; top: calc(100% + 10px); right: 7.2%; display: flex; width: min(390px, calc(100vw - 32px)); max-height: min(78vh, 620px); flex-direction: column; align-items: stretch; gap: 14px; padding: 16px; overflow-y: auto; border: 1px solid rgba(242,197,28,.34); border-radius: 12px; background: #171714; box-shadow: 0 18px 48px rgba(0,0,0,.38); }
+    nav.header-menu[hidden] { display: none; }
+    .header-menu .nav-dropdown { position: static; }
+    .header-menu .nav-dropdown summary { min-height: 46px; padding: 0 14px; border: 1px solid rgba(242,197,28,.38); border-radius: 7px; background: rgba(242,197,28,.08); }
+    .header-menu .nav-dropdown summary:hover, .header-menu .nav-dropdown[open] summary { border-color: var(--sun); background: rgba(242,197,28,.15); }
+    .header-menu .dropdown-panel { position: static; width: 100%; max-height: min(45vh, 360px); margin-top: 9px; overflow-y: auto; border-color: rgba(242,197,28,.26); background: #22221d; box-shadow: none; animation: dropdown-in .16s ease-out both; }
+    .header-menu .theme-toggle { justify-content: space-between; min-height: 44px; padding: 0 12px; border: 1px solid rgba(255,255,255,.1); border-radius: 7px; background: rgba(255,255,255,.04); }
+    .header-menu .nav-contact { display: block; padding: 13px 16px; border-radius: 7px; text-align: center; }
     .nav-dropdown { position: relative; }
     .nav-dropdown summary { display: flex; align-items: center; gap: 8px; color: #e6e5df; cursor: pointer; list-style: none; }
     .nav-dropdown summary::-webkit-details-marker { display: none; }
@@ -123,7 +138,8 @@
     .theme-toggle[aria-pressed="true"] .theme-switch::after { transform: translateX(16px); }
     .theme-toggle:hover { color: var(--sun); }
     .theme-toggle:focus-visible { outline: 2px solid var(--sun); outline-offset: 4px; }
-    .hero { min-height: 590px; display: grid; grid-template-columns: 1fr 1fr; background: rgba(23, 23, 20, .96); color: var(--white); overflow: hidden; }
+    main [id] { scroll-margin-top: 92px; }
+    .hero { min-height: 640px; display: grid; grid-template-columns: 1fr 1fr; background: rgba(23, 23, 20, .96); color: var(--white); overflow: hidden; }
     .hero-copy { align-self: center; padding: 64px 8vw 78px 14.4%; animation: rise .75s both; }
     .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 22px; color: var(--sun); font-size: 11px; font-weight: 700; letter-spacing: 2.2px; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 25px; height: 2px; background: currentColor; }
@@ -136,17 +152,20 @@
     .button:hover { transform: translateY(-2px); background: #ffda3e; }
     .text-link { color: #f3f2ed; font-size: 13px; font-weight: 600; }
     .text-link span { padding-left: 5px; color: var(--sun); }
-    .hero-photo { min-height: 500px; display: grid; place-items: center; padding: 24px; background: #28271d; }
-    .hero-photo img { display: block; width: 100%; height: 540px; object-fit: contain; }
+    .hero-photo { min-height: 540px; display: grid; place-items: center; padding: 24px; background: #28271d; }
+    .hero-photo img { display: block; width: 100%; height: 580px; object-fit: contain; }
+    .parallax-hero, .parallax-ambience { will-change: transform; }
+    .parallax-hero { transform: scale(1.04); }
+    .parallax-ambience { transform: scale(1.035); }
     .strip { position: relative; z-index: 1; display: flex; justify-content: center; gap: clamp(25px, 7vw, 100px); padding: 18px 24px; background: rgba(242, 197, 28, .96); color: #171714; font-size: 11px; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; }
     .strip span::before { content: "✳"; padding-right: 10px; font-size: 13px; }
-    .menu-section { max-width: 1160px; margin: auto; padding: 93px 6% 100px; }
-    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 34px; }
+    .menu-section { max-width: 1160px; margin: auto; padding: 112px 6% 120px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 42px; }
     .section-heading .eyebrow { margin-bottom: 11px; color: #a17d00; }
     h2 { margin-bottom: 0; font-family: "Playfair Display", serif; font-size: clamp(34px, 4vw, 47px); line-height: 1.1; }
     .section-heading > p { max-width: 300px; margin: 0 0 4px; color: var(--muted); font-size: 13px; line-height: 1.7; }
-    .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 22px; }
-    .menu-card { padding: 24px; background: var(--card); border: 1px solid var(--card-border); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
+    .menu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 26px; }
+    .menu-card { padding: 28px; background: var(--card); border: 1px solid var(--card-border); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
     .menu-card h3 { margin: 0 0 18px; font-family: "Playfair Display", serif; font-size: 24px; }
     .menu-accordion > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; list-style: none; }
     .menu-accordion > summary::-webkit-details-marker { display: none; }
@@ -160,6 +179,9 @@
     .price-list li { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.5; }
     .price-list li:last-child { border-bottom: 0; }
     .price-list data { flex: 0 0 auto; font-weight: 700; text-align: right; white-space: nowrap; }
+    .load-more { display: block; min-height: 40px; margin: 14px auto 0; padding: 0 16px; border: 1px solid #a17d00; border-radius: 999px; background: transparent; color: var(--ink); font-size: 12px; font-weight: 700; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+    .load-more:hover { border-color: #a17d00; background: var(--sun); color: #171714; }
+    .load-more:focus-visible { outline: 3px solid #a17d00; outline-offset: 3px; }
     .add-to-cart { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); color: var(--ink); font-size: 20px; line-height: 1; cursor: pointer; }
     .add-to-cart:hover { border-color: #a17d00; background: var(--sun); color: #171714; }
     .add-to-cart:focus-visible { outline: 3px solid #a17d00; outline-offset: 2px; }
@@ -186,13 +208,27 @@
     .buffet-price { flex: 0 0 auto; padding: 17px 20px; border: 1px solid rgba(242,197,28,.52); border-radius: 5px; background: rgba(242,197,28,.09); text-align: center; }
     .buffet-price strong { display: block; color: var(--sun); font-family: "Playfair Display", serif; font-size: clamp(27px, 3vw, 36px); white-space: nowrap; }
     .buffet-price span { display: block; margin-top: 3px; color: #e6e5df; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-    .ambience { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; padding: 76px 10%; background: var(--ambience-bg); }
+    .experience { padding: 104px 7%; background: #171714; color: #f7f6f1; }
+    .experience-inner { max-width: 1100px; margin: 0 auto; }
+    .experience-heading { max-width: 680px; margin: 0 auto 42px; text-align: center; }
+    .experience-heading .eyebrow { justify-content: center; }
+    .experience-heading h2 { color: #fff; text-wrap: balance; }
+    .experience-heading > p:last-child { max-width: 540px; margin: 16px auto 0; color: #c2c1ba; font-size: 14px; line-height: 1.8; }
+    .experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .experience-card { min-height: 230px; padding: 27px; border: 1px solid rgba(242,197,28,.25); border-radius: 6px; background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015)); transition: transform .2s, border-color .2s, background-color .2s; }
+    .experience-card:hover { transform: translateY(-4px); border-color: rgba(242,197,28,.7); background-color: rgba(242,197,28,.04); }
+    .experience-card > span { display: block; margin-bottom: 30px; color: var(--sun); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; }
+    .experience-card h3 { margin: 0 0 11px; color: #fff; font-family: "Playfair Display", serif; font-size: 22px; }
+    .experience-card p { margin: 0; color: #c2c1ba; font-size: 13px; line-height: 1.8; }
+    .experience-action { display: flex; justify-content: center; margin-top: 34px; }
+    .experience-action .button:hover { color: #171714; }
+    .ambience { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; padding: 96px 10%; background: var(--ambience-bg); }
     .ambience .eyebrow { color: #a17d00; }
     .ambience h2 { max-width: 430px; margin-bottom: 17px; }
     .ambience-copy > p:not(.eyebrow) { max-width: 420px; margin: 0 0 13px; color: var(--ambience-text); font-size: 14px; line-height: 1.8; }
     .ambience-copy > p:last-child { margin-bottom: 0; }
     .ambience video { display: block; width: 100%; max-height: 440px; aspect-ratio: 16 / 10; background: var(--ink); object-fit: cover; box-shadow: 0 14px 36px rgba(23, 23, 20, .18); }
-    .contact { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, 1fr) auto; align-items: center; gap: 25px; padding: 62px 10%; background: rgba(242, 197, 28, .95); color: #171714; }
+    .contact { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, 1fr) auto; align-items: center; gap: 25px; padding: 78px 10%; background: rgba(242, 197, 28, .95); color: #171714; }
     .contact h2 { max-width: 520px; font-size: clamp(31px, 4vw, 45px); }
     .contact p { margin: 10px 0 0; color: #4f4312; font-size: 13px; }
     .contact-details { font-size: 13px; line-height: 1.7; }
@@ -205,6 +241,9 @@
     .opening-status { display: inline-flex; align-items: center; gap: 7px; margin-top: 5px !important; font-weight: 700; }
     .opening-status::before { width: 9px; height: 9px; flex: 0 0 auto; border-radius: 50%; background: #a33b2d; content: ""; }
     .opening-status[data-open="true"]::before { background: #247a43; }
+    .reservation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr); gap: 48px; padding: 80px 10%; background: var(--paper); }
+    .reservation-copy p:not(.eyebrow) { max-width: 430px; margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .reservation-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 28px; border: 1px solid var(--card-border); background: var(--card); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
     .reservation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr); gap: 40px; padding: 64px 10%; background: var(--paper); }
     .reservation-copy p:not(.eyebrow) { max-width: 430px; margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
     .reservation-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 24px; border: 1px solid var(--card-border); background: var(--card); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
@@ -217,11 +256,13 @@
     .anti-spam-status[data-state="error"] { color: #a33b2d; }
     .anti-spam-status[data-state="success"] { color: #247a43; }
     .reservation-form button:disabled, .whatsapp-order:disabled { cursor: not-allowed; opacity: .6; }
+    .order-dock { position: relative; z-index: 52; display: flex; align-items: center; gap: 8px; }
     .order-dock { position: fixed; z-index: 40; bottom: max(16px, env(safe-area-inset-bottom)); left: max(16px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 8px; }
     .order-cart { position: relative; }
     .order-cart > summary { display: flex; min-height: 48px; align-items: center; gap: 8px; padding: 0 15px; border: 1px solid rgba(242,197,28,.65); border-radius: 999px; background: var(--scroll-control-bg); color: var(--scroll-control-text); box-shadow: 0 8px 26px rgba(0,0,0,.2); font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; }
     .order-cart > summary::-webkit-details-marker { display: none; }
     .cart-count { display: inline-grid; min-width: 22px; height: 22px; place-items: center; border-radius: 50%; background: var(--sun); color: #171714; }
+    .cart-panel { position: absolute; z-index: 65; top: calc(100% + 26px); right: 0; width: min(320px, calc(100vw - 32px)); max-height: min(55vh, 360px); padding: 16px; overflow: auto; border: 1px solid var(--card-border); border-radius: 8px; background: var(--card); color: var(--ink); box-shadow: 0 12px 35px rgba(0,0,0,.24); }
     .cart-panel { position: absolute; bottom: calc(100% + 10px); left: 0; width: min(320px, calc(100vw - 32px)); max-height: min(55vh, 360px); padding: 16px; overflow: auto; border: 1px solid var(--card-border); border-radius: 8px; background: var(--card); color: var(--ink); box-shadow: 0 12px 35px rgba(0,0,0,.24); }
     .cart-panel p { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
     .cart-list { margin: 0; padding: 0; list-style: none; }
@@ -293,7 +334,7 @@
       .brand-mark { width: 36px; height: 36px; }
       nav { gap: 12px; font-size: 12px; }
       .nav-dropdown { position: static; }
-      .dropdown-panel { top: calc(100% + 6px); right: 12px; left: auto; }
+      nav.header-menu { right: 12px; width: min(390px, calc(100vw - 24px)); }
       .nav-contact { padding: 10px 11px; font-size: 11px; white-space: nowrap; }
       .theme-toggle { gap: 6px; font-size: 11px; }
       .theme-switch { width: 34px; height: 19px; }
@@ -307,7 +348,7 @@
       .hero-photo img { height: clamp(250px, 76vw, 370px); }
       .strip { justify-content: flex-start; gap: 22px; overflow-x: auto; padding: 16px 18px; white-space: nowrap; scrollbar-width: none; }
       .strip::-webkit-scrollbar { display: none; }
-      .menu-section { padding: 60px 6% 68px; }
+      .menu-section { padding: 76px 6% 84px; }
       .section-heading { display: block; }
       .section-heading > p { margin-top: 13px; }
       .menu-grid { grid-template-columns: 1fr; gap: 18px; }
@@ -315,8 +356,13 @@
       .highlight-card { padding: 19px; }
       .buffet-offer { align-items: flex-start; flex-direction: column; gap: 20px; margin-top: 26px; padding: 26px 21px; }
       .buffet-price { align-self: flex-start; min-width: 190px; }
-      .ambience { grid-template-columns: 1fr; gap: 24px; padding: 48px 7%; }
+      .experience { padding: 68px 7%; }
+      .experience-grid { grid-template-columns: 1fr; gap: 12px; }
+      .experience-card { min-height: 0; }
+      .ambience { grid-template-columns: 1fr; gap: 24px; padding: 58px 7%; }
       .ambience video { max-height: none; }
+      .contact { grid-template-columns: 1fr; align-items: start; gap: 20px; padding: 52px 7%; }
+      .reservation { grid-template-columns: 1fr; gap: 26px; padding: 60px 7%; }
       .contact { grid-template-columns: 1fr; align-items: start; gap: 20px; padding: 42px 7%; }
       .reservation { grid-template-columns: 1fr; gap: 22px; padding: 48px 7%; }
       .auto-scroll-controls { bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); }
@@ -341,10 +387,12 @@
       .hero-photo, .hero-photo img { min-height: 230px; height: 72vw; max-height: 300px; }
       .actions { align-items: flex-start; flex-direction: column; gap: 15px; }
       .button { min-height: 46px; }
-      .menu-section { padding: 48px 18px 56px; }
+      .menu-section { padding: 60px 18px 68px; }
       .flyer-caption { padding: 16px; }
-      .ambience { padding: 42px 20px; }
-      .contact { padding: 38px 20px; }
+      .experience { padding: 54px 20px; }
+      .experience-card { padding: 22px; }
+      .ambience { padding: 50px 20px; }
+      .contact { padding: 46px 20px; }
     }
     @media (max-width: 380px) {
       .auto-scroll-controls { right: 12px; bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); }
@@ -354,6 +402,18 @@
       .order-cart > summary { padding: 0 11px; }
       .whatsapp-order { width: 46px; min-height: 46px; padding: 0; font-size: 0; }
       .whatsapp-order span { font-size: 20px; }
+    }
+    @media (max-width: 430px) {
+      .topbar { padding-right: 12px; padding-left: 12px; }
+      .brand { gap: 0; }
+      .brand-mark { width: 36px; height: 36px; }
+      .brand > span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+      .header-actions { gap: 5px; }
+      .order-dock { gap: 5px; }
+      .order-cart > summary { min-height: 44px; padding: 0 10px; }
+      .whatsapp-order { width: 44px; min-height: 44px; padding: 0; font-size: 0; }
+      .whatsapp-order span { font-size: 19px; }
+      .menu-toggle { width: 44px; height: 44px; }
     }
     @media (max-width: 600px) {
       .bubble { opacity: .34; }
@@ -366,6 +426,7 @@
       .bubble { top: var(--still-top); bottom: auto; animation: none; }
       .scroll-reveal, .scroll-reveal.is-visible { opacity: 1; transform: none; transition: none; }
       .mascot svg { animation: none; }
+      .parallax-hero, .parallax-ambience { transform: none !important; will-change: auto; }
     }
   </style>
 </head>
@@ -440,7 +501,29 @@
       <span class="brand-mark"><img src="assets/logo-chez-soso.png" alt="Logo Chez Soso"></span>
       <span>Chez Soso</span>
     </a>
-    <nav aria-label="Navigation principale">
+    <div class="header-actions">
+      <div class="order-dock" aria-label="Panier et commande WhatsApp">
+        <details class="order-cart" id="panier">
+          <summary aria-label="Ouvrir le panier, 0 article">
+            <span>Panier</span><span class="cart-count" aria-live="polite">0</span>
+          </summary>
+          <div class="cart-panel">
+            <p class="cart-empty">Votre panier est vide. Ajoutez vos plats avec le bouton +.</p>
+            <ul class="cart-list"></ul>
+            <button class="clear-cart" type="button" hidden>Vider le panier</button>
+            <div class="turnstile-widget" id="order-turnstile" aria-label="Vérification anti-robot pour la commande"></div>
+            <p class="anti-spam-status" id="order-anti-spam-status" role="status" aria-live="polite">Ouvrez le panier pour vérifier avant de commander.</p>
+          </div>
+        </details>
+        <button class="whatsapp-order" type="button" aria-label="Commander sur WhatsApp" title="Commander sur WhatsApp">
+          <span aria-hidden="true">↗</span> Commander
+        </button>
+      </div>
+      <button class="menu-toggle" type="button" aria-controls="header-menu" aria-expanded="false" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="header-menu" id="header-menu" aria-label="Navigation principale" hidden>
       <details class="nav-dropdown">
         <summary>
           Explorer
@@ -451,6 +534,7 @@
         <div class="dropdown-panel">
           <a href="#carte">La carte</a>
           <a href="#boissons">Boissons</a>
+          <a href="#experience">L'expérience Chez Soso</a>
           <a href="#ambiance">L'ambiance</a>
           <a href="#reservation">Réserver une salle</a>
         </div>
@@ -474,7 +558,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="assets/brochettes.png" alt="Brochettes et spécialités de Chez Soso">
+        <img class="parallax-hero" src="assets/broche-sans-filigrane.png" alt="Affiche Chez Soso mettant en avant ses brochettes">
       </div>
     </section>
     <div class="strip" aria-label="Spécialités">
@@ -632,6 +716,35 @@
         </div>
       </aside>
     </section>
+    <section class="experience" id="experience">
+      <div class="experience-inner">
+        <div class="experience-heading">
+          <p class="eyebrow">L’expérience Chez Soso</p>
+          <h2>De bons plats, de beaux moments.</h2>
+          <p>Pour un repas partagé ou une occasion à célébrer, retrouvez les saveurs et l’accueil de Chez Soso à Port-Gentil.</p>
+        </div>
+        <div class="experience-grid">
+          <article class="experience-card">
+            <span>01 · À TABLE</span>
+            <h3>Les saveurs à partager</h3>
+            <p>Grillades, plats africains et accompagnements composent une carte généreuse, à découvrir selon vos envies.</p>
+          </article>
+          <article class="experience-card">
+            <span>02 · LE BUFFET</span>
+            <h3>Un moment convivial</h3>
+            <p>Profitez du buffet Chez Soso à 8&nbsp;000 FCFA par personne et savourez le plaisir d’un repas à partager.</p>
+          </article>
+          <article class="experience-card">
+            <span>03 · VOS ÉVÉNEMENTS</span>
+            <h3>Une occasion à célébrer</h3>
+            <p>Anniversaire, mariage, réunion ou repas de famille : contactez l’équipe pour préparer votre événement.</p>
+          </article>
+        </div>
+        <div class="experience-action">
+          <a class="button" href="#reservation">Parler de mon événement <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
     <section class="ambience" id="ambiance">
       <div class="ambience-copy">
         <p class="eyebrow">Chez Soso</p>
@@ -640,6 +753,7 @@
         <p>Vous pouvez également réserver une salle et organiser vos événements chez Soso. Contactez-nous pour préparer votre projet.</p>
         <p>Que vous veniez pour un repas, un verre ou simplement pour découvrir l'adresse, Chez Soso vous accueille à Port-Gentil pour savourer l'instant.</p>
       </div>
+      <video class="parallax-ambience" controls muted loop playsinline preload="none" poster="assets/broche-sans-filigrane.png" aria-label="Vidéo de l'ambiance chez Soso">
       <video controls muted loop playsinline preload="none" poster="assets/brochettes.png" aria-label="Vidéo de l'ambiance chez Soso">
         <source src="assets/ambiance.mp4" type="video/mp4">
         Votre navigateur ne prend pas en charge la lecture de cette vidéo.
@@ -717,6 +831,8 @@
   <script>
     const navDropdown = document.querySelector('.nav-dropdown');
     const navSummary = navDropdown.querySelector('summary');
+    const menuToggle = document.querySelector('.menu-toggle');
+    const headerMenu = document.querySelector('#header-menu');
     const themeToggle = document.querySelector('.theme-toggle');
     const themeLabel = themeToggle.querySelector('.theme-toggle-label');
     const themeColor = document.querySelector('meta[name="theme-color"]');
@@ -726,6 +842,17 @@
     const autoScrollIcon = autoScrollToggle.querySelector('.auto-scroll-icon');
     const autoScrollCollapse = document.querySelector('.auto-scroll-collapse');
     const sosoMascot = document.querySelector('.mascot');
+
+    function setHeaderMenuOpen(isOpen) {
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+      headerMenu.hidden = !isOpen;
+      if (!isOpen) navDropdown.open = false;
+    }
+
+    menuToggle.addEventListener('click', () => {
+      setHeaderMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+    });
 
     function setTheme(theme, save = false) {
       const isDark = theme === 'dark';
@@ -997,7 +1124,7 @@
     });
 
     const revealTargets = document.querySelectorAll(
-      '.menu-section .section-heading, .flyer-card, .highlight-card, .buffet-offer, .ambience-copy, .ambience video, .contact > div, .contact > .button'
+      '.menu-section .section-heading, .flyer-card, .highlight-card, .buffet-offer, .experience-heading, .experience-card, .experience-action, .ambience-copy, .ambience video, .contact > div, .contact > .button'
     );
 
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1016,19 +1143,462 @@
       });
     }
 
-    document.addEventListener('click', (event) => {
-      if (!navDropdown.contains(event.target)) navDropdown.open = false;
-    });
+    const parallaxLayers = [
+      { element: document.querySelector('.parallax-hero'), speed: 0.12, scale: 1.04 },
+      { element: document.querySelector('.parallax-ambience'), speed: 0.08, scale: 1.035 }
+    ].filter(({ element }) => element);
+    let parallaxFrame = 0;
+
+    function updateParallax() {
+      parallaxFrame = 0;
+      if (reducedMotion.matches) return;
+
+      const viewportCenter = window.innerHeight / 2;
+      parallaxLayers.forEach(({ element, speed, scale }) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+        const distanceFromCenter = rect.top + rect.height / 2 - viewportCenter;
+        const shift = Math.max(-34, Math.min(34, -distanceFromCenter * speed));
+        element.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0) scale(${scale})`;
+      });
+    }
+
+    function requestParallaxUpdate() {
+      if (parallaxFrame) return;
+      parallaxFrame = window.requestAnimationFrame(updateParallax);
+    }
+
+    if (!reducedMotion.matches && !window.matchMedia('(max-width: 760px)').matches) {
+      window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+      window.addEventListener('resize', requestParallaxUpdate);
+      updateParallax();
+    }
 
     navDropdown.addEventListener('click', (event) => {
       if (event.target.closest('.dropdown-panel a')) navDropdown.open = false;
+    });
+
+    headerMenu.addEventListener('click', (event) => {
+      if (!event.target.closest('a')) return;
+      setHeaderMenuOpen(false);
+      menuToggle.focus({ preventScroll: true });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!navDropdown.contains(event.target)) navDropdown.open = false;
+      if (!headerMenu.contains(event.target) && !menuToggle.contains(event.target)) setHeaderMenuOpen(false);
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && navDropdown.open) {
         navDropdown.open = false;
         navSummary.focus();
+        return;
       }
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        setHeaderMenuOpen(false);
+        menuToggle.focus();
+      }
+    });
+
+    const cart = new Map();
+    const cartCount = document.querySelector('.cart-count');
+    const cartSummary = document.querySelector('.order-cart > summary');
+    const cartList = document.querySelector('.cart-list');
+    const cartEmpty = document.querySelector('.cart-empty');
+    const clearCart = document.querySelector('.clear-cart');
+    const whatsappOrder = document.querySelector('.whatsapp-order');
+    const orderCart = document.querySelector('.order-cart');
+    const orderTurnstile = document.querySelector('#order-turnstile');
+    const orderAntiSpamStatus = document.querySelector('#order-anti-spam-status');
+    const reservationForm = document.querySelector('.reservation-form');
+    const reservationDate = document.querySelector('#reservation-date');
+    const reservationTurnstile = document.querySelector('#reservation-turnstile');
+    const reservationAntiSpamStatus = document.querySelector('#reservation-anti-spam-status');
+    const reservationSubmit = reservationForm.querySelector('button[type="submit"]');
+    let turnstileApi = null;
+    let turnstileSiteKey = '';
+    let antiSpamInitializationError = '';
+    let orderWidgetId = null;
+    let reservationWidgetId = null;
+    let orderToken = '';
+    let reservationToken = '';
+    let orderMessage = 'Bonjour Chez Soso, je souhaite commander';
+
+    const menuLoadBatchSize = 5;
+    document.querySelectorAll('.price-list, .side-list').forEach((list, listIndex) => {
+      const items = [...list.children];
+      if (items.length <= menuLoadBatchSize) return;
+
+      if (!list.id) list.id = `menu-list-${listIndex + 1}`;
+      let visibleCount = menuLoadBatchSize;
+      const loadMore = document.createElement('button');
+      loadMore.className = 'load-more';
+      loadMore.type = 'button';
+      loadMore.setAttribute('aria-controls', list.id);
+
+      function updateLoadMoreButton() {
+        const remainingCount = items.length - visibleCount;
+        if (remainingCount <= 0) {
+          loadMore.hidden = true;
+          return;
+        }
+        loadMore.textContent = `Afficher les ${Math.min(menuLoadBatchSize, remainingCount)} suivants`;
+        loadMore.setAttribute('aria-label', `Afficher les ${Math.min(menuLoadBatchSize, remainingCount)} éléments suivants`);
+      }
+
+      items.forEach((item, index) => {
+        item.hidden = index >= visibleCount;
+      });
+      updateLoadMoreButton();
+      list.after(loadMore);
+
+      loadMore.addEventListener('click', () => {
+        const nextVisibleCount = Math.min(visibleCount + menuLoadBatchSize, items.length);
+        items.slice(visibleCount, nextVisibleCount).forEach((item) => {
+          item.hidden = false;
+        });
+        visibleCount = nextVisibleCount;
+        updateLoadMoreButton();
+      });
+    });
+
+    function renderCart() {
+      const itemCount = Array.from(cart.values()).reduce((total, quantity) => total + quantity, 0);
+      cartCount.textContent = String(itemCount);
+      cartSummary.setAttribute('aria-label', `Ouvrir le panier, ${itemCount} article${itemCount === 1 ? '' : 's'}`);
+      cartEmpty.hidden = itemCount > 0;
+      clearCart.hidden = itemCount === 0;
+      cartList.replaceChildren();
+
+      cart.forEach((quantity, name) => {
+        const item = document.createElement('li');
+        const label = document.createElement('span');
+        const controls = document.createElement('span');
+        const decrease = document.createElement('button');
+        const increase = document.createElement('button');
+
+        label.textContent = `${quantity} × ${name}`;
+        controls.className = 'cart-quantity-controls';
+        decrease.type = 'button';
+        decrease.textContent = '−';
+        decrease.setAttribute('aria-label', `Retirer un ${name} du panier`);
+        decrease.dataset.cartAction = 'decrease';
+        decrease.dataset.itemName = name;
+        increase.type = 'button';
+        increase.textContent = '+';
+        increase.setAttribute('aria-label', `Ajouter un ${name} au panier`);
+        increase.dataset.cartAction = 'increase';
+        increase.dataset.itemName = name;
+        controls.append(decrease, increase);
+        item.append(label, controls);
+        cartList.append(item);
+      });
+
+      orderMessage = itemCount
+        ? `Bonjour, je voudrais ${Array.from(cart, ([name, quantity]) => `${quantity} x ${name}`).join(' et ')}.`
+        : 'Bonjour Chez Soso, je souhaite commander';
+    }
+
+    document.querySelectorAll('.menu-grid > article:first-child .price-list li, .menu-grid > article:first-child .side-list li')
+      .forEach((item) => {
+        const name = item.querySelector('span').textContent.trim();
+        const addButton = document.createElement('button');
+        addButton.className = 'add-to-cart';
+        addButton.type = 'button';
+        addButton.textContent = '+';
+        addButton.setAttribute('aria-label', `Ajouter ${name} au panier`);
+        addButton.addEventListener('click', () => {
+          cart.set(name, (cart.get(name) || 0) + 1);
+          renderCart();
+        });
+        item.append(addButton);
+      });
+
+    cartList.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-cart-action]');
+      if (!button) return;
+
+      const name = button.dataset.itemName;
+      const quantity = cart.get(name) || 0;
+      if (button.dataset.cartAction === 'increase') cart.set(name, quantity + 1);
+      else if (quantity <= 1) cart.delete(name);
+      else cart.set(name, quantity - 1);
+      renderCart();
+    });
+
+    clearCart.addEventListener('click', () => {
+      cart.clear();
+      renderCart();
+    });
+
+    function setAntiSpamStatus(element, message, state = 'info') {
+      element.textContent = message;
+      element.dataset.state = state;
+    }
+
+    function loadTurnstileApi() {
+      if (window.turnstile) return Promise.resolve(window.turnstile);
+
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.onload = () => {
+          if (window.turnstile) resolve(window.turnstile);
+          else reject(new Error('Le script de vérification ne s’est pas initialisé.'));
+        };
+        script.onerror = () => reject(new Error('Le script de vérification anti-robot est inaccessible.'));
+        document.head.append(script);
+      });
+    }
+
+    function renderOrderTurnstile() {
+      if (!turnstileApi || orderWidgetId !== null) return;
+
+      try {
+        orderWidgetId = turnstileApi.render(orderTurnstile, {
+          sitekey: turnstileSiteKey,
+          action: 'order',
+          callback(token) {
+            orderToken = token;
+            setAntiSpamStatus(orderAntiSpamStatus, 'Vérification terminée. Vous pouvez commander.', 'success');
+          },
+          'expired-callback'() {
+            orderToken = '';
+            setAntiSpamStatus(orderAntiSpamStatus, 'La vérification a expiré. Recommencez.');
+          },
+          'error-callback'() {
+            orderToken = '';
+            setAntiSpamStatus(orderAntiSpamStatus, 'La vérification a échoué. Réessayez.', 'error');
+          }
+        });
+      } catch (error) {
+        console.error('Le widget de commande Turnstile n’a pas pu être affiché.', error);
+        setAntiSpamStatus(orderAntiSpamStatus, 'Impossible d’afficher la vérification anti-robot.', 'error');
+      }
+    }
+
+    async function verifyTurnstileToken(action, token) {
+      let response;
+      try {
+        response = await fetch('/api/verify-turnstile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, token })
+        });
+      } catch (error) {
+        console.error('Impossible de joindre le service de vérification anti-robot.', error);
+        throw new Error('Le service de vérification est indisponible. Réessayez.');
+      }
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (error) {
+        console.error('Réponse JSON invalide du service de vérification anti-robot.', error);
+        throw new Error('Le service de vérification a renvoyé une réponse invalide.');
+      }
+
+      if (!result || typeof result !== 'object') {
+        throw new Error('Le service de vérification a renvoyé une réponse invalide.');
+      }
+      if (response.ok && result.success === true) return;
+
+      const messages = {
+        'turnstile-not-configured': 'La protection anti-robot n’est pas encore configurée.',
+        'verification-rejected': 'La vérification a échoué. Recommencez.',
+        'verification-unavailable': 'Le service de vérification est indisponible. Réessayez.'
+      };
+      throw new Error(messages[result.error] || 'La vérification anti-robot a échoué.');
+    }
+
+    function openWhatsAppWindow() {
+      const popup = window.open('about:blank', '_blank');
+      if (popup) popup.opener = null;
+      return popup;
+    }
+
+    function getWhatsAppUrl(message) {
+      return `https://wa.me/24177233838?text=${encodeURIComponent(message)}`;
+    }
+
+    orderCart.addEventListener('toggle', () => {
+      if (orderCart.open) renderOrderTurnstile();
+    });
+
+    sosoMascot.addEventListener('click', (event) => {
+      event.preventDefault();
+      orderCart.open = true;
+      orderCart.querySelector('summary').focus();
+      setAntiSpamStatus(
+        orderAntiSpamStatus,
+        antiSpamInitializationError || 'Validez la vérification anti-robot pour commander.',
+        antiSpamInitializationError ? 'error' : 'info'
+      );
+    });
+
+    whatsappOrder.addEventListener('click', async () => {
+      if (!turnstileApi) {
+        orderCart.open = true;
+        setAntiSpamStatus(orderAntiSpamStatus, antiSpamInitializationError || 'La vérification anti-robot se charge.', antiSpamInitializationError ? 'error' : 'info');
+        orderTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      orderCart.open = true;
+      renderOrderTurnstile();
+      if (orderWidgetId === null) return;
+      if (!orderToken) {
+        setAntiSpamStatus(orderAntiSpamStatus, 'Validez la vérification anti-robot pour commander.');
+        orderTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const popup = openWhatsAppWindow();
+      if (!popup) {
+        setAntiSpamStatus(orderAntiSpamStatus, 'Autorisez les fenêtres contextuelles pour ouvrir WhatsApp.', 'error');
+        return;
+      }
+
+      const token = orderToken;
+      whatsappOrder.disabled = true;
+      setAntiSpamStatus(orderAntiSpamStatus, 'Vérification en cours…');
+      try {
+        await verifyTurnstileToken('order', token);
+        popup.location.replace(getWhatsAppUrl(orderMessage));
+        setAntiSpamStatus(orderAntiSpamStatus, 'Vérification réussie. WhatsApp s’ouvre.', 'success');
+      } catch (error) {
+        popup.close();
+        setAntiSpamStatus(orderAntiSpamStatus, error.message, 'error');
+      } finally {
+        orderToken = '';
+        if (turnstileApi && orderWidgetId !== null) turnstileApi.reset(orderWidgetId);
+        whatsappOrder.disabled = false;
+      }
+    });
+
+    const gabonDateParts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Africa/Libreville',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+    const gabonDate = Object.fromEntries(gabonDateParts.map(({ type, value }) => [type, value]));
+    reservationDate.min = `${gabonDate.year}-${gabonDate.month}-${gabonDate.day}`;
+
+    reservationForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!reservationForm.reportValidity()) return;
+      if (!reservationToken) {
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Validez la vérification anti-robot avant d’envoyer la demande.', 'error');
+        reservationTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const popup = openWhatsAppWindow();
+      if (!popup) {
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Autorisez les fenêtres contextuelles pour ouvrir WhatsApp.', 'error');
+        return;
+      }
+
+      const formData = new FormData(reservationForm);
+      const [year, month, day] = formData.get('date').split('-').map(Number);
+      const dateLabel = new Intl.DateTimeFormat('fr-GA', {
+        timeZone: 'Africa/Libreville',
+        dateStyle: 'long'
+      }).format(new Date(Date.UTC(year, month - 1, day, 12)));
+      const message = [
+        'Bonjour Chez Soso, je souhaite réserver une salle.',
+        `Date souhaitée : ${dateLabel}`,
+        `Nombre de personnes : ${formData.get('guests')}`,
+        `Type d'événement : ${formData.get('event')}`
+      ].join('\n');
+      const token = reservationToken;
+      reservationSubmit.disabled = true;
+      setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification en cours…');
+      try {
+        await verifyTurnstileToken('reservation', token);
+        popup.location.replace(getWhatsAppUrl(message));
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification réussie. WhatsApp s’ouvre.', 'success');
+      } catch (error) {
+        popup.close();
+        setAntiSpamStatus(reservationAntiSpamStatus, error.message, 'error');
+      } finally {
+        reservationToken = '';
+        if (turnstileApi && reservationWidgetId !== null) turnstileApi.reset(reservationWidgetId);
+        reservationSubmit.disabled = true;
+      }
+    });
+
+    async function initializeAntiSpam() {
+      const isLocalDevelopment = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+        && window.location.protocol === 'http:';
+      if (window.location.protocol !== 'https:' && !isLocalDevelopment) {
+        throw new Error('La protection anti-robot nécessite un déploiement Vercel ou « vercel dev ».');
+      }
+
+      let response;
+      try {
+        response = await fetch('/api/turnstile-config', { cache: 'no-store' });
+      } catch (error) {
+        console.error('La configuration Turnstile est inaccessible.', error);
+        throw new Error('Impossible de joindre la configuration anti-robot.');
+      }
+
+      let config;
+      try {
+        config = await response.json();
+      } catch (error) {
+        console.error('La configuration Turnstile a renvoyé une réponse invalide.', error);
+        throw new Error('La configuration anti-robot a renvoyé une réponse invalide.');
+      }
+      if (!response.ok || typeof config.siteKey !== 'string' || !config.siteKey.trim()) {
+        throw new Error('La protection anti-robot n’est pas configurée.');
+      }
+
+      turnstileApi = await loadTurnstileApi();
+      turnstileSiteKey = config.siteKey;
+      antiSpamInitializationError = '';
+      reservationWidgetId = turnstileApi.render(reservationTurnstile, {
+        sitekey: turnstileSiteKey,
+        action: 'reservation',
+        callback(token) {
+          reservationToken = token;
+          reservationSubmit.disabled = false;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification terminée. Vous pouvez envoyer la demande.', 'success');
+        },
+        'expired-callback'() {
+          reservationToken = '';
+          reservationSubmit.disabled = true;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'La vérification a expiré. Recommencez.');
+        },
+        'error-callback'() {
+          reservationToken = '';
+          reservationSubmit.disabled = true;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'La vérification a échoué. Réessayez.', 'error');
+        }
+      });
+      if (orderCart.open) renderOrderTurnstile();
+      setAntiSpamStatus(orderAntiSpamStatus, 'Validez la vérification anti-robot pour commander.');
+      setAntiSpamStatus(reservationAntiSpamStatus, 'Validez la vérification anti-robot avant d’envoyer la demande.');
+    }
+
+    initializeAntiSpam().catch((error) => {
+      console.error('La protection anti-robot n’a pas pu être initialisée.', error);
+      antiSpamInitializationError = error.message;
+      setAntiSpamStatus(orderAntiSpamStatus, error.message, 'error');
+      setAntiSpamStatus(reservationAntiSpamStatus, error.message, 'error');
+    });
+
+    const openingStatus = document.querySelector('.opening-status');
+    const gabonClock = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Africa/Libreville',
+      weekday: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23'
     });
 
     const cart = new Map();
