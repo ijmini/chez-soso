@@ -244,6 +244,9 @@
     .reservation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr); gap: 48px; padding: 80px 10%; background: var(--paper); }
     .reservation-copy p:not(.eyebrow) { max-width: 430px; margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
     .reservation-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 28px; border: 1px solid var(--card-border); background: var(--card); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
+    .reservation { display: grid; grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr); gap: 40px; padding: 64px 10%; background: var(--paper); }
+    .reservation-copy p:not(.eyebrow) { max-width: 430px; margin: 14px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .reservation-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 24px; border: 1px solid var(--card-border); background: var(--card); box-shadow: 0 12px 35px rgba(23, 23, 20, .08); }
     .reservation-form label { display: grid; gap: 7px; font-size: 12px; font-weight: 700; }
     .reservation-form input, .reservation-form select { width: 100%; min-height: 44px; padding: 9px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); font: inherit; }
     .reservation-form .form-event, .reservation-form button { grid-column: 1 / -1; }
@@ -254,11 +257,13 @@
     .anti-spam-status[data-state="success"] { color: #247a43; }
     .reservation-form button:disabled, .whatsapp-order:disabled { cursor: not-allowed; opacity: .6; }
     .order-dock { position: relative; z-index: 52; display: flex; align-items: center; gap: 8px; }
+    .order-dock { position: fixed; z-index: 40; bottom: max(16px, env(safe-area-inset-bottom)); left: max(16px, env(safe-area-inset-left)); display: flex; align-items: center; gap: 8px; }
     .order-cart { position: relative; }
     .order-cart > summary { display: flex; min-height: 48px; align-items: center; gap: 8px; padding: 0 15px; border: 1px solid rgba(242,197,28,.65); border-radius: 999px; background: var(--scroll-control-bg); color: var(--scroll-control-text); box-shadow: 0 8px 26px rgba(0,0,0,.2); font-size: 12px; font-weight: 700; cursor: pointer; list-style: none; }
     .order-cart > summary::-webkit-details-marker { display: none; }
     .cart-count { display: inline-grid; min-width: 22px; height: 22px; place-items: center; border-radius: 50%; background: var(--sun); color: #171714; }
     .cart-panel { position: absolute; z-index: 65; top: calc(100% + 26px); right: 0; width: min(320px, calc(100vw - 32px)); max-height: min(55vh, 360px); padding: 16px; overflow: auto; border: 1px solid var(--card-border); border-radius: 8px; background: var(--card); color: var(--ink); box-shadow: 0 12px 35px rgba(0,0,0,.24); }
+    .cart-panel { position: absolute; bottom: calc(100% + 10px); left: 0; width: min(320px, calc(100vw - 32px)); max-height: min(55vh, 360px); padding: 16px; overflow: auto; border: 1px solid var(--card-border); border-radius: 8px; background: var(--card); color: var(--ink); box-shadow: 0 12px 35px rgba(0,0,0,.24); }
     .cart-panel p { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
     .cart-list { margin: 0; padding: 0; list-style: none; }
     .cart-list li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
@@ -358,6 +363,8 @@
       .ambience video { max-height: none; }
       .contact { grid-template-columns: 1fr; align-items: start; gap: 20px; padding: 52px 7%; }
       .reservation { grid-template-columns: 1fr; gap: 26px; padding: 60px 7%; }
+      .contact { grid-template-columns: 1fr; align-items: start; gap: 20px; padding: 42px 7%; }
+      .reservation { grid-template-columns: 1fr; gap: 22px; padding: 48px 7%; }
       .auto-scroll-controls { bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); }
       footer { align-items: flex-start; flex-direction: column; padding: 23px 7%; }
     }
@@ -391,6 +398,10 @@
       .auto-scroll-controls { right: 12px; bottom: max(76px, calc(env(safe-area-inset-bottom) + 76px)); }
       .auto-scroll-toggle { min-height: 42px; padding: 0 13px; font-size: 11px; }
       .auto-scroll-controls[data-compact="true"] .auto-scroll-toggle { width: 38px; min-height: 38px; }
+      .order-dock { left: 12px; gap: 5px; }
+      .order-cart > summary { padding: 0 11px; }
+      .whatsapp-order { width: 46px; min-height: 46px; padding: 0; font-size: 0; }
+      .whatsapp-order span { font-size: 20px; }
     }
     @media (max-width: 430px) {
       .topbar { padding-right: 12px; padding-left: 12px; }
@@ -743,6 +754,7 @@
         <p>Que vous veniez pour un repas, un verre ou simplement pour découvrir l'adresse, Chez Soso vous accueille à Port-Gentil pour savourer l'instant.</p>
       </div>
       <video class="parallax-ambience" controls muted loop playsinline preload="none" poster="assets/broche-sans-filigrane.png" aria-label="Vidéo de l'ambiance chez Soso">
+      <video controls muted loop playsinline preload="none" poster="assets/brochettes.png" aria-label="Vidéo de l'ambiance chez Soso">
         <source src="assets/ambiance.mp4" type="video/mp4">
         Votre navigateur ne prend pas en charge la lecture de cette vidéo.
       </video>
@@ -799,6 +811,23 @@
     <p>Restaurant & bar · Port-Gentil, Gabon</p>
     <p>© Chez Soso</p>
   </footer>
+  <div class="order-dock" aria-label="Panier et commande WhatsApp">
+    <details class="order-cart" id="panier">
+      <summary aria-label="Ouvrir le panier, 0 article">
+        <span>Panier</span><span class="cart-count" aria-live="polite">0</span>
+      </summary>
+      <div class="cart-panel">
+        <p class="cart-empty">Votre panier est vide. Ajoutez vos plats avec le bouton +.</p>
+        <ul class="cart-list"></ul>
+        <button class="clear-cart" type="button" hidden>Vider le panier</button>
+        <div class="turnstile-widget" id="order-turnstile" aria-label="Vérification anti-robot pour la commande"></div>
+        <p class="anti-spam-status" id="order-anti-spam-status" role="status" aria-live="polite">Ouvrez le panier pour vérifier avant de commander.</p>
+      </div>
+    </details>
+    <button class="whatsapp-order" type="button" aria-label="Commander sur WhatsApp">
+      <span aria-hidden="true">↗</span> Commander
+    </button>
+  </div>
   <script>
     const navDropdown = document.querySelector('.nav-dropdown');
     const navSummary = navDropdown.querySelector('summary');
@@ -1234,6 +1263,367 @@
         updateLoadMoreButton();
       });
     });
+
+    function renderCart() {
+      const itemCount = Array.from(cart.values()).reduce((total, quantity) => total + quantity, 0);
+      cartCount.textContent = String(itemCount);
+      cartSummary.setAttribute('aria-label', `Ouvrir le panier, ${itemCount} article${itemCount === 1 ? '' : 's'}`);
+      cartEmpty.hidden = itemCount > 0;
+      clearCart.hidden = itemCount === 0;
+      cartList.replaceChildren();
+
+      cart.forEach((quantity, name) => {
+        const item = document.createElement('li');
+        const label = document.createElement('span');
+        const controls = document.createElement('span');
+        const decrease = document.createElement('button');
+        const increase = document.createElement('button');
+
+        label.textContent = `${quantity} × ${name}`;
+        controls.className = 'cart-quantity-controls';
+        decrease.type = 'button';
+        decrease.textContent = '−';
+        decrease.setAttribute('aria-label', `Retirer un ${name} du panier`);
+        decrease.dataset.cartAction = 'decrease';
+        decrease.dataset.itemName = name;
+        increase.type = 'button';
+        increase.textContent = '+';
+        increase.setAttribute('aria-label', `Ajouter un ${name} au panier`);
+        increase.dataset.cartAction = 'increase';
+        increase.dataset.itemName = name;
+        controls.append(decrease, increase);
+        item.append(label, controls);
+        cartList.append(item);
+      });
+
+      orderMessage = itemCount
+        ? `Bonjour, je voudrais ${Array.from(cart, ([name, quantity]) => `${quantity} x ${name}`).join(' et ')}.`
+        : 'Bonjour Chez Soso, je souhaite commander';
+    }
+
+    document.querySelectorAll('.menu-grid > article:first-child .price-list li, .menu-grid > article:first-child .side-list li')
+      .forEach((item) => {
+        const name = item.querySelector('span').textContent.trim();
+        const addButton = document.createElement('button');
+        addButton.className = 'add-to-cart';
+        addButton.type = 'button';
+        addButton.textContent = '+';
+        addButton.setAttribute('aria-label', `Ajouter ${name} au panier`);
+        addButton.addEventListener('click', () => {
+          cart.set(name, (cart.get(name) || 0) + 1);
+          renderCart();
+        });
+        item.append(addButton);
+      });
+
+    cartList.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-cart-action]');
+      if (!button) return;
+
+      const name = button.dataset.itemName;
+      const quantity = cart.get(name) || 0;
+      if (button.dataset.cartAction === 'increase') cart.set(name, quantity + 1);
+      else if (quantity <= 1) cart.delete(name);
+      else cart.set(name, quantity - 1);
+      renderCart();
+    });
+
+    clearCart.addEventListener('click', () => {
+      cart.clear();
+      renderCart();
+    });
+
+    function setAntiSpamStatus(element, message, state = 'info') {
+      element.textContent = message;
+      element.dataset.state = state;
+    }
+
+    function loadTurnstileApi() {
+      if (window.turnstile) return Promise.resolve(window.turnstile);
+
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async = true;
+        script.onload = () => {
+          if (window.turnstile) resolve(window.turnstile);
+          else reject(new Error('Le script de vérification ne s’est pas initialisé.'));
+        };
+        script.onerror = () => reject(new Error('Le script de vérification anti-robot est inaccessible.'));
+        document.head.append(script);
+      });
+    }
+
+    function renderOrderTurnstile() {
+      if (!turnstileApi || orderWidgetId !== null) return;
+
+      try {
+        orderWidgetId = turnstileApi.render(orderTurnstile, {
+          sitekey: turnstileSiteKey,
+          action: 'order',
+          callback(token) {
+            orderToken = token;
+            setAntiSpamStatus(orderAntiSpamStatus, 'Vérification terminée. Vous pouvez commander.', 'success');
+          },
+          'expired-callback'() {
+            orderToken = '';
+            setAntiSpamStatus(orderAntiSpamStatus, 'La vérification a expiré. Recommencez.');
+          },
+          'error-callback'() {
+            orderToken = '';
+            setAntiSpamStatus(orderAntiSpamStatus, 'La vérification a échoué. Réessayez.', 'error');
+          }
+        });
+      } catch (error) {
+        console.error('Le widget de commande Turnstile n’a pas pu être affiché.', error);
+        setAntiSpamStatus(orderAntiSpamStatus, 'Impossible d’afficher la vérification anti-robot.', 'error');
+      }
+    }
+
+    async function verifyTurnstileToken(action, token) {
+      let response;
+      try {
+        response = await fetch('/api/verify-turnstile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, token })
+        });
+      } catch (error) {
+        console.error('Impossible de joindre le service de vérification anti-robot.', error);
+        throw new Error('Le service de vérification est indisponible. Réessayez.');
+      }
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (error) {
+        console.error('Réponse JSON invalide du service de vérification anti-robot.', error);
+        throw new Error('Le service de vérification a renvoyé une réponse invalide.');
+      }
+
+      if (!result || typeof result !== 'object') {
+        throw new Error('Le service de vérification a renvoyé une réponse invalide.');
+      }
+      if (response.ok && result.success === true) return;
+
+      const messages = {
+        'turnstile-not-configured': 'La protection anti-robot n’est pas encore configurée.',
+        'verification-rejected': 'La vérification a échoué. Recommencez.',
+        'verification-unavailable': 'Le service de vérification est indisponible. Réessayez.'
+      };
+      throw new Error(messages[result.error] || 'La vérification anti-robot a échoué.');
+    }
+
+    function openWhatsAppWindow() {
+      const popup = window.open('about:blank', '_blank');
+      if (popup) popup.opener = null;
+      return popup;
+    }
+
+    function getWhatsAppUrl(message) {
+      return `https://wa.me/24177233838?text=${encodeURIComponent(message)}`;
+    }
+
+    orderCart.addEventListener('toggle', () => {
+      if (orderCart.open) renderOrderTurnstile();
+    });
+
+    sosoMascot.addEventListener('click', (event) => {
+      event.preventDefault();
+      orderCart.open = true;
+      orderCart.querySelector('summary').focus();
+      setAntiSpamStatus(
+        orderAntiSpamStatus,
+        antiSpamInitializationError || 'Validez la vérification anti-robot pour commander.',
+        antiSpamInitializationError ? 'error' : 'info'
+      );
+    });
+
+    whatsappOrder.addEventListener('click', async () => {
+      if (!turnstileApi) {
+        orderCart.open = true;
+        setAntiSpamStatus(orderAntiSpamStatus, antiSpamInitializationError || 'La vérification anti-robot se charge.', antiSpamInitializationError ? 'error' : 'info');
+        orderTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      orderCart.open = true;
+      renderOrderTurnstile();
+      if (orderWidgetId === null) return;
+      if (!orderToken) {
+        setAntiSpamStatus(orderAntiSpamStatus, 'Validez la vérification anti-robot pour commander.');
+        orderTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const popup = openWhatsAppWindow();
+      if (!popup) {
+        setAntiSpamStatus(orderAntiSpamStatus, 'Autorisez les fenêtres contextuelles pour ouvrir WhatsApp.', 'error');
+        return;
+      }
+
+      const token = orderToken;
+      whatsappOrder.disabled = true;
+      setAntiSpamStatus(orderAntiSpamStatus, 'Vérification en cours…');
+      try {
+        await verifyTurnstileToken('order', token);
+        popup.location.replace(getWhatsAppUrl(orderMessage));
+        setAntiSpamStatus(orderAntiSpamStatus, 'Vérification réussie. WhatsApp s’ouvre.', 'success');
+      } catch (error) {
+        popup.close();
+        setAntiSpamStatus(orderAntiSpamStatus, error.message, 'error');
+      } finally {
+        orderToken = '';
+        if (turnstileApi && orderWidgetId !== null) turnstileApi.reset(orderWidgetId);
+        whatsappOrder.disabled = false;
+      }
+    });
+
+    const gabonDateParts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Africa/Libreville',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).formatToParts(new Date());
+    const gabonDate = Object.fromEntries(gabonDateParts.map(({ type, value }) => [type, value]));
+    reservationDate.min = `${gabonDate.year}-${gabonDate.month}-${gabonDate.day}`;
+
+    reservationForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!reservationForm.reportValidity()) return;
+      if (!reservationToken) {
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Validez la vérification anti-robot avant d’envoyer la demande.', 'error');
+        reservationTurnstile.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const popup = openWhatsAppWindow();
+      if (!popup) {
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Autorisez les fenêtres contextuelles pour ouvrir WhatsApp.', 'error');
+        return;
+      }
+
+      const formData = new FormData(reservationForm);
+      const [year, month, day] = formData.get('date').split('-').map(Number);
+      const dateLabel = new Intl.DateTimeFormat('fr-GA', {
+        timeZone: 'Africa/Libreville',
+        dateStyle: 'long'
+      }).format(new Date(Date.UTC(year, month - 1, day, 12)));
+      const message = [
+        'Bonjour Chez Soso, je souhaite réserver une salle.',
+        `Date souhaitée : ${dateLabel}`,
+        `Nombre de personnes : ${formData.get('guests')}`,
+        `Type d'événement : ${formData.get('event')}`
+      ].join('\n');
+      const token = reservationToken;
+      reservationSubmit.disabled = true;
+      setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification en cours…');
+      try {
+        await verifyTurnstileToken('reservation', token);
+        popup.location.replace(getWhatsAppUrl(message));
+        setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification réussie. WhatsApp s’ouvre.', 'success');
+      } catch (error) {
+        popup.close();
+        setAntiSpamStatus(reservationAntiSpamStatus, error.message, 'error');
+      } finally {
+        reservationToken = '';
+        if (turnstileApi && reservationWidgetId !== null) turnstileApi.reset(reservationWidgetId);
+        reservationSubmit.disabled = true;
+      }
+    });
+
+    async function initializeAntiSpam() {
+      const isLocalDevelopment = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+        && window.location.protocol === 'http:';
+      if (window.location.protocol !== 'https:' && !isLocalDevelopment) {
+        throw new Error('La protection anti-robot nécessite un déploiement Vercel ou « vercel dev ».');
+      }
+
+      let response;
+      try {
+        response = await fetch('/api/turnstile-config', { cache: 'no-store' });
+      } catch (error) {
+        console.error('La configuration Turnstile est inaccessible.', error);
+        throw new Error('Impossible de joindre la configuration anti-robot.');
+      }
+
+      let config;
+      try {
+        config = await response.json();
+      } catch (error) {
+        console.error('La configuration Turnstile a renvoyé une réponse invalide.', error);
+        throw new Error('La configuration anti-robot a renvoyé une réponse invalide.');
+      }
+      if (!response.ok || typeof config.siteKey !== 'string' || !config.siteKey.trim()) {
+        throw new Error('La protection anti-robot n’est pas configurée.');
+      }
+
+      turnstileApi = await loadTurnstileApi();
+      turnstileSiteKey = config.siteKey;
+      antiSpamInitializationError = '';
+      reservationWidgetId = turnstileApi.render(reservationTurnstile, {
+        sitekey: turnstileSiteKey,
+        action: 'reservation',
+        callback(token) {
+          reservationToken = token;
+          reservationSubmit.disabled = false;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'Vérification terminée. Vous pouvez envoyer la demande.', 'success');
+        },
+        'expired-callback'() {
+          reservationToken = '';
+          reservationSubmit.disabled = true;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'La vérification a expiré. Recommencez.');
+        },
+        'error-callback'() {
+          reservationToken = '';
+          reservationSubmit.disabled = true;
+          setAntiSpamStatus(reservationAntiSpamStatus, 'La vérification a échoué. Réessayez.', 'error');
+        }
+      });
+      if (orderCart.open) renderOrderTurnstile();
+      setAntiSpamStatus(orderAntiSpamStatus, 'Validez la vérification anti-robot pour commander.');
+      setAntiSpamStatus(reservationAntiSpamStatus, 'Validez la vérification anti-robot avant d’envoyer la demande.');
+    }
+
+    initializeAntiSpam().catch((error) => {
+      console.error('La protection anti-robot n’a pas pu être initialisée.', error);
+      antiSpamInitializationError = error.message;
+      setAntiSpamStatus(orderAntiSpamStatus, error.message, 'error');
+      setAntiSpamStatus(reservationAntiSpamStatus, error.message, 'error');
+    });
+
+    const openingStatus = document.querySelector('.opening-status');
+    const gabonClock = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Africa/Libreville',
+      weekday: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23'
+    });
+
+    const cart = new Map();
+    const cartCount = document.querySelector('.cart-count');
+    const cartSummary = document.querySelector('.order-cart > summary');
+    const cartList = document.querySelector('.cart-list');
+    const cartEmpty = document.querySelector('.cart-empty');
+    const clearCart = document.querySelector('.clear-cart');
+    const whatsappOrder = document.querySelector('.whatsapp-order');
+    const orderCart = document.querySelector('.order-cart');
+    const orderTurnstile = document.querySelector('#order-turnstile');
+    const orderAntiSpamStatus = document.querySelector('#order-anti-spam-status');
+    const reservationForm = document.querySelector('.reservation-form');
+    const reservationDate = document.querySelector('#reservation-date');
+    const reservationTurnstile = document.querySelector('#reservation-turnstile');
+    const reservationAntiSpamStatus = document.querySelector('#reservation-anti-spam-status');
+    const reservationSubmit = reservationForm.querySelector('button[type="submit"]');
+    let turnstileApi = null;
+    let turnstileSiteKey = '';
+    let antiSpamInitializationError = '';
+    let orderWidgetId = null;
+    let reservationWidgetId = null;
+    let orderToken = '';
+    let reservationToken = '';
+    let orderMessage = 'Bonjour Chez Soso, je souhaite commander';
 
     function renderCart() {
       const itemCount = Array.from(cart.values()).reduce((total, quantity) => total + quantity, 0);

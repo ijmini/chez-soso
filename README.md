@@ -14,6 +14,7 @@ et WhatsApp.
 - Menus textuels repliables pour garder l'aperçu compact, avec les visuels originaux accessibles en complément.
 - Chargement progressif des plats et accompagnements avec le bouton « Afficher les suivants ».
 - Panier et commande WhatsApp accessibles depuis la barre de navigation, avec message prérempli, horaires en temps réel et réservation de salle.
+- Panier de plats avec commande WhatsApp préremplie, horaires en temps réel et formulaire de réservation de salle.
 - Protection anti-robot Cloudflare Turnstile, vérifiée côté serveur pour les commandes et les réservations.
 - Adresse à 25 Logement, horaires du lundi au samedi (12 h–21 h) et deux numéros cliquables.
 - Réservation de salle et organisation d'événements.
