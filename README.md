@@ -8,9 +8,12 @@ et WhatsApp.
 ## Fonctionnalités
 
 - Écran de lancement animé « Chez SoSo ».
+- Section « L’expérience Chez Soso » et espacements augmentés pour une landing page plus ample.
+- Menu burger dans l’en-tête regroupant Explorer, le thème et le contact.
 - Présentation responsive des grillades, des plats africains, des accompagnements et des boissons.
 - Menus textuels repliables pour garder l'aperçu compact, avec les visuels originaux accessibles en complément.
-- Panier de plats avec commande WhatsApp préremplie, horaires en temps réel et formulaire de réservation de salle.
+- Chargement progressif des plats et accompagnements avec le bouton « Afficher les suivants ».
+- Panier et commande WhatsApp accessibles depuis la barre de navigation, avec message prérempli, horaires en temps réel et réservation de salle.
 - Protection anti-robot Cloudflare Turnstile, vérifiée côté serveur pour les commandes et les réservations.
 - Adresse à 25 Logement, horaires du lundi au samedi (12 h–21 h) et deux numéros cliquables.
 - Réservation de salle et organisation d'événements.
@@ -19,6 +22,7 @@ et WhatsApp.
 - Métadonnées de partage et données structurées Schema.org `Restaurant`.
 - Choix entre thème clair et thème sombre, mémorisé dans le navigateur.
 - Bulles décoratives animées en arrière-plan.
+- Parallaxe discret sur les visuels principaux, désactivé sur mobile et avec la réduction des animations.
 - Défilement automatique réversible, avec commande de pause/reprise et option compacte.
 - Mascotte Soso animée qui suit le pointeur ou le doigt et ouvre une conversation WhatsApp préremplie.
 - Respect de la préférence système de réduction des animations.
@@ -77,6 +81,7 @@ tests/
   verify-turnstile.test.js
 assets/
   ambiance.mp4
+  broche-sans-filigrane.png
   brochettes.png
   logo-chez-soso.png
   mascotte.png
